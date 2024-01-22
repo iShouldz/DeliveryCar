@@ -1,17 +1,30 @@
 /* eslint-disable react/prop-types */
+import {
+  Button,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@mui/material";
+import styles from "./styles.module.css";
+import Card from "@mui/material/Card";
 
-const CardComponent = ({img, title, description}) => {
+const CardComponent = ({ img, alt, title, description }) => {
   return (
-    <div>
-        <img src={img} alt="Um belo carro laranja" />
+    <Card sx={{ maxWidth: "331px" }}>
+      <CardMedia component="img" alt={alt} image={img} />
 
-        <h1>{title}</h1>
-        <p>{description}</p>
+      <CardContent>
+        <Typography>{title}</Typography>
 
-        {/*Trocar para o botão do material ui depois */}
-        <button>Learn more</button>
-    </div>
-  )
-}
+        <Typography>{description}</Typography>
+      </CardContent>
 
-export default CardComponent
+      <CardActions sx={{ justifyContent: "flex-end" }}>
+        <Button>Learn more</Button>
+      </CardActions>
+    </Card>
+  );
+};
+
+export default CardComponent;
