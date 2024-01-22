@@ -6,7 +6,6 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
-import styles from "./styles.module.css";
 import Card from "@mui/material/Card";
 
 const CardComponent = ({ img, alt, title, description }) => {
