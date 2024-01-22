@@ -1,0 +1,9 @@
+.startContainer{
+    display: flex;
+    align-items: center;
+}
+
+.simpleFormContainer{
+    display: flex;
+    flex-direction: column
+}
