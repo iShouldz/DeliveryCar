@@ -1,12 +1,18 @@
+//Components
 import CardComponent from "../../../components/CardComponent/CardComponent";
+
+//Assets
 import car1 from "../../../assets/car1.png";
 import car2 from "../../../assets/car2.png";
 import car3 from "../../../assets/car3.png";
 import car4 from "../../../assets/car4.png";
 
+//CSS
+import styles from './styles.module.css'
+
 const MidHome = () => {
   return (
-    <div>
+    <section className={styles.cardContainer}>
       <CardComponent
         img={car1}
         title={"Basic"}
@@ -38,7 +44,7 @@ const MidHome = () => {
           "The best ride for luxury and comfort. No compromises here. You’ll surely get what you pay for."
         }
       />
-    </div>
+    </section>
   );
 };
 
