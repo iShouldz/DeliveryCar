@@ -1,6 +1,10 @@
+import MidHome from "./MidHome/MidHome"
+
 const Home = () => {
   return (
-    <div>Home</div>
+    <div>Home
+      <MidHome />
+    </div>
   )
 }
 
