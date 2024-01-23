@@ -121,10 +121,7 @@ const FormCar = () => {
               <FormLabel id="demo-radio-buttons-group-label">
                 Select your car type
               </FormLabel>
-              <RadioGroup
-                aria-labelledby="demo-radio-buttons-group-label"
-                name="radio-buttons-group"
-              >
+              <section className={styles.radioContainer}>
                 <RadioForm
                   label="Sedan"
                   value="Sedan"
@@ -164,7 +161,7 @@ const FormCar = () => {
                   selectedCar={selectedCar}
                   svg={carRadio1}
                 />
-              </RadioGroup>
+              </section>
             </FormControl>
           )}
         </FormGroup>
