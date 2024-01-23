@@ -1,22 +1,24 @@
 /* eslint-disable no-unused-vars */
 import * as yup from "yup";
-//import ErrosForm from "../../components/ErrosForm/ErrosForm";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
+  Autocomplete,
   Button,
   FormControl,
   FormControlLabel,
   FormGroup,
   FormLabel,
+  InputLabel,
   Radio,
   RadioGroup,
+  Select,
   Switch,
   TextField,
 } from "@mui/material";
 import React from "react";
-// import { ReactComponent as CustomRadioIcon } from '../../assets/form/Card Image.svg'
+import jsonCountry from "../../utils/countries-and-cities.json";
 import styles from "./styles.module.css";
 import carRadio1 from "../../assets/form/Card Image.svg";
 import RadioForm from "../../components/RadioForm/RadioForm";
@@ -32,7 +34,8 @@ const schema = yup
 const FormCar = () => {
   const [statusSwitch, setStatusSwitch] = useState(false);
   const [selectedCar, setSelectedCar] = useState("");
-
+  const [country, setCountry] = useState();
+  const [city, setCity] = useState();
   const {
     register,
     handleSubmit,
@@ -86,6 +89,10 @@ const FormCar = () => {
     setSelectedCar(event.target.value);
   };
 
+  const handleChangeCountry = (event) => {
+    setCountry(event.target.value);
+  };
+
   return (
     <section>
       <form onSubmit={handleSubmit(handleSubmitForm)}>
@@ -107,6 +114,11 @@ const FormCar = () => {
             label="Referral Code"
             name="placaUser"
             {...register("placaUser")}
+          />
+
+          <Autocomplete
+            options={Object.keys(jsonCountry)}
+            renderInput={(params) => <TextField {...params} label="Contry" />}
           />
 
           <FormControlLabel
