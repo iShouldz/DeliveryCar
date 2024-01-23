@@ -2,6 +2,7 @@ import { Box, Button, FormGroup, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import startCar from "../../../assets/startCar.png";
 import styles from "./styles.module.css";
+import TextFuildCar from "../../../components/UI/TextFuildCar/TextFuildCar";
 
 const StartHome = () => {
   const [pickupData, setPickupData] = useState("");
@@ -11,8 +12,8 @@ const StartHome = () => {
   console.log(destinationData);
 
   const handleSubmit = () => {
-    console.log()
-  }
+    console.log();
+  };
 
   return (
     <section className={styles.startContainer}>
@@ -27,16 +28,26 @@ const StartHome = () => {
         </div>
 
         <FormGroup onSubmit={handleSubmit}>
-          <Box component="form" sx={{ display: 'flex', flexDirection: 'column' }}>
+          <Box
+            component="form"
+            sx={{ display: "flex", flexDirection: "column" }}
+          >
             <Typography>Find a ride now</Typography>
-            <TextField
+            {/* <TextField
               id="location"
               label="Your Pickup"
               value={pickupData}
               onChange={(event) => setPickupData(event.target.value)}
-            />
+            /> */}
 
-            <TextField
+            <TextFuildCar
+              id="location"
+              label="Your Pickup"
+              value={pickupData}
+              onChange={(event) => setPickupData(event.target.value)}
+             />
+
+            <TextFuildCar
               id="destination"
               label="Your Destination"
               value={destinationData}

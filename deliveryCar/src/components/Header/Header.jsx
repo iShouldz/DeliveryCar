@@ -1,15 +1,30 @@
-import { AppBar, Box, IconButton, Tab, Tabs, Toolbar } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  IconButton,
+  Tab,
+  Tabs,
+  Toolbar,
+  useTheme,
+} from "@mui/material";
 import logo from "../../assets/Logo.svg";
 import userLogo from "../../assets/user-avatar.svg";
 import notification from "../../assets/bell-icon.svg";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Header = () => {
   const navigate = useNavigate();
+  const theme = useTheme();
+
+  const [selectedUrl, setSelecteUrl] = useState("");
 
   const handleGoTo = (url) => {
     navigate(`/${url}`);
+    setSelecteUrl(url);
   };
+
+  console.log(theme);
 
   return (
     <header>
@@ -24,19 +39,52 @@ const Header = () => {
           </IconButton>
 
           <Tabs id="headerMenu" sx={{ display: "flex" }}>
-            <Tab label="Home" value="Home" onClick={() => handleGoTo("")} />
+            <Tab
+              label="Home"
+              value="Home"
+              sx={{
+                color: selectedUrl === "" ? "secondary.light" : "primary.light",
+                textTransform: "none",
+              }}
+              onClick={() => handleGoTo("")}
+            />
 
-            <Tab label="Getting a Taxi" value="Getting a Taxi" />
+            <Tab
+              label="Getting a Taxi"
+              sx={{
+                color:
+                  selectedUrl === "getTaxi"
+                    ? "secondary.light"
+                    : "primary.light",
+                textTransform: "none",
+              }}
+              value="Getting a Taxi"
+            />
+            {/*getting a taxi pode disparar um modal explicando */}
 
             <Tab
               label="Mobile App"
               value="Mobile App"
+              sx={{
+                color:
+                  selectedUrl === "mobile-app"
+                    ? "secondary.light"
+                    : "primary.light",
+                textTransform: "none",
+              }}
               onClick={() => handleGoTo("mobile-app")}
             />
 
             <Tab
               label="Contact Us"
               value="Contact Us"
+              sx={{
+                color:
+                  selectedUrl === "contact-us"
+                    ? "secondary.light"
+                    : "primary.light",
+                textTransform: "none",
+              }}
               onClick={() => handleGoTo("contact-us")}
             />
           </Tabs>

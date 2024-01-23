@@ -23,6 +23,7 @@ import styles from "./styles.module.css";
 import carRadio1 from "../../assets/form/Card Image.svg";
 import RadioForm from "../../components/RadioForm/RadioForm";
 import ErrosForm from "../ErrosForm/ErrosForm";
+import TextFuildCar from "../UI/TextFuildCar/TextFuildCar";
 
 const schema = yup
   .object({
@@ -32,7 +33,10 @@ const schema = yup
       .required(),
     emailUser: yup
       .string()
-      .matches(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i, "Email not valid")
+      .matches(
+        /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+        "Email not valid"
+      )
       .required("Email required"),
     placaUser: yup
       .string()
@@ -40,6 +44,11 @@ const schema = yup
       .required(),
     country: yup.string().required(),
     city: yup.string().required(),
+    // selectedCar: yup.string().when("statusSwitch", {
+    //   is: false,
+    //   then: (schema) => schema.required("Select your car type"),
+    //   otherwise: (schema) => schema.notRequired()
+    // }),
   })
   .required();
 
@@ -122,7 +131,7 @@ const FormCar = () => {
     <section>
       <form onSubmit={handleSubmit(handleSubmitForm)}>
         <FormGroup>
-          <TextField
+          <TextFuildCar
             id="nameUser"
             label="Full Name"
             name="fullName"
@@ -131,7 +140,7 @@ const FormCar = () => {
 
           <ErrosForm errors={errors?.fullName?.message} />
 
-          <TextField
+          <TextFuildCar
             id="emailUser"
             label="Email Address"
             name="emailUser"
@@ -140,7 +149,7 @@ const FormCar = () => {
 
           <ErrosForm errors={errors?.emailUser?.message} />
 
-          <TextField
+          <TextFuildCar
             id="placaUser"
             label="Referral Code"
             name="placaUser"
@@ -236,6 +245,8 @@ const FormCar = () => {
                   svg={carRadio1}
                 />
               </section>
+
+              <ErrosForm errors={errors?.selectedCar?.message} />
             </FormControl>
           )}
         </FormGroup>
