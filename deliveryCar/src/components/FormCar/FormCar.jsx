@@ -26,11 +26,14 @@ import ErrosForm from "../ErrosForm/ErrosForm";
 
 const schema = yup
   .object({
-    fullName: yup.string().min(5).required(),
+    fullName: yup.string().matches(/[a-zA-Z]+ [a-zA-Z]+/, "Required a full name").required(),
     emailUser: yup.string().required(),
-    placaUser: yup.string().required(),
-    selectedCar: yup.string().required(),
-    country: yup.string().required()
+    placaUser: yup
+      .string()
+      .matches(/[a-zA-Z]{3}-\d{3}$/, "Invalid refferal")
+      .required(),
+    country: yup.string().required(),
+    city: yup.string().required(),
   })
   .required();
 
@@ -41,7 +44,7 @@ const FormCar = () => {
   const [city, setCity] = useState(null);
   const [citySelected, setCitySelected] = useState();
 
-  console.log(country);
+  // console.log(country);
 
   const {
     register,
@@ -54,6 +57,7 @@ const FormCar = () => {
 
   const handleSubmitForm = (data) => {
     console.log(data);
+    console.log(errors)
 
     const { fullName, emailUser, placaUser, selectedCar, country, city } = data;
 
@@ -153,7 +157,7 @@ const FormCar = () => {
             onChange={(event, newValue) => setCountry(newValue)}
           />
 
-          <ErrosForm errors={errors?.placaUser?.message} />
+          <ErrosForm errors={errors?.country?.message} />
 
           <Autocomplete
             options={city}
@@ -171,7 +175,8 @@ const FormCar = () => {
             disabled={country === null}
           />
 
-          <ErrosForm errors={errors?.placaUser?.message} />
+          <ErrosForm errors={errors?.city?.message} />
+
           <FormControlLabel
             control={
               <Switch checked={statusSwitch} onChange={handleChangeSwitch} />
