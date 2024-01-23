@@ -130,8 +130,11 @@ const FormCar = () => {
 
   return (
     <section>
-      <form onSubmit={handleSubmit(handleSubmitForm)}>
-        <FormGroup>
+      <form
+        onSubmit={handleSubmit(handleSubmitForm)}
+        className={styles.formContainer}
+      >
+        <FormGroup className={styles.groupContainer}>
           <TextFuildCar
             id="nameUser"
             label="Full Name"
@@ -149,15 +152,6 @@ const FormCar = () => {
           />
 
           <ErrosForm errors={errors?.emailUser?.message} />
-
-          <TextFuildCar
-            id="placaUser"
-            label="Referral Code"
-            name="placaUser"
-            {...register("placaUser")}
-          />
-
-          <ErrosForm errors={errors?.placaUser?.message} />
 
           <Autocomplete
             options={Object.keys(jsonCountry)}
@@ -193,11 +187,42 @@ const FormCar = () => {
 
           <ErrosForm errors={errors?.city?.message} />
 
+          <TextFuildCar
+            id="placaUser"
+            label="Referral Code"
+            name="placaUser"
+            {...register("placaUser")}
+          />
+
+          <ErrosForm errors={errors?.placaUser?.message} />
+
           <FormControlLabel
+            value="start"
             control={
               <Switch checked={statusSwitch} onChange={handleChangeSwitch} />
             }
             label="I drive my own car"
+            labelPlacement="start"
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              margin: 0,
+              "& .MuiSwitch-switchBase": {
+                "&.Mui-checked": {
+                  color: "#fff",
+                  "& + .MuiSwitch-track": {
+                    opacity: 0.3,
+                    backgroundColor: "secondary.main",
+                  },
+                },
+              },
+              "& .MuiSwitch-switchBase.Mui-checked": {
+                color: "secondary.main",
+              },
+              "& .MuiFormControlLabel-label": {
+                color: "white",
+              },
+            }}
           />
 
           {statusSwitch && (
@@ -250,11 +275,15 @@ const FormCar = () => {
               <ErrosForm errors={errors?.selectedCar?.message} />
             </FormControl>
           )}
+          <ButtonCar
+            type="submit"
+            variant="contained"
+            id={styles.buttonForm}
+            color="primary.light"
+          >
+            Submit
+          </ButtonCar>
         </FormGroup>
-
-        <ButtonCar type="submit" variant="contained">
-          Submit
-        </ButtonCar>
       </form>
     </section>
   );

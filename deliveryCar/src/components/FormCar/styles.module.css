@@ -5,3 +5,20 @@
   align-self: stretch;
   width: 30%;
 }
+
+.formContainer{
+  width: 1324px;
+  height: 871px;
+}
+
+.groupContainer{
+  padding: 30px;
+
+  gap: 24px;
+  flex-shrink: 0;
+}
+
+#buttonForm{
+  width: 200px;
+  height: 56px;
+}
