@@ -1,0 +1,33 @@
+.formContainer {
+  display: flex;
+  width: 1324px;
+  height: 871px;
+  padding: 30px;
+  flex-direction: column;
+  gap: 24px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #282828;
+}
+
+.headerForm {
+  display: flex;
+  gap: 18px;
+}
+
+#headerContent > p,
+h2 {
+  margin: 0;
+}
+
+#headerContent {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.containerMain{
+    display: flex;
+    justify-content: center;
+}
