@@ -1,0 +1,26 @@
+.boxRadio {
+    display: flex;
+    height: 80px;
+    width: 147px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    flex: 1 0 0;
+    border-radius: 4px;
+    border: 1px solid #000000;
+    background-color: rgb(255, 166, 0);
+  }
+  
+  .boxRadioYello{
+      display: flex;
+    height: 80px;
+    width: 147px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    flex: 1 0 0;
+    border-radius: 4px;
+    border: 1px solid #000000;
+  }
