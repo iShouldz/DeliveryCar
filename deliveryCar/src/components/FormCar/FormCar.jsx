@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import * as yup from "yup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
@@ -34,8 +34,12 @@ const schema = yup
 const FormCar = () => {
   const [statusSwitch, setStatusSwitch] = useState(false);
   const [selectedCar, setSelectedCar] = useState("");
-  const [country, setCountry] = useState();
-  const [city, setCity] = useState();
+  const [country, setCountry] = useState(null);
+  const [city, setCity] = useState(null);
+  const [citySelected, setCitySelected] = useState()
+
+  console.log(country);
+
   const {
     register,
     handleSubmit,
@@ -93,6 +97,12 @@ const FormCar = () => {
     setCountry(event.target.value);
   };
 
+  useEffect(() => {
+    if(country in jsonCountry){
+      setCity(jsonCountry[country])
+    }
+  }, [country])
+
   return (
     <section>
       <form onSubmit={handleSubmit(handleSubmitForm)}>
@@ -119,8 +129,18 @@ const FormCar = () => {
           <Autocomplete
             options={Object.keys(jsonCountry)}
             renderInput={(params) => <TextField {...params} label="Contry" />}
+            value={country}
+            onChange={(event, newValue) => setCountry(newValue)}
           />
 
+          <Autocomplete
+            options={city}
+            renderInput={(params) => <TextField {...params} label="City" />}
+            value={citySelected}
+            onChange={(event, newValue) => setCitySelected(newValue)}
+            getOptionLabel={(option) => option}
+           
+          />
           <FormControlLabel
             control={
               <Switch checked={statusSwitch} onChange={handleChangeSwitch} />
