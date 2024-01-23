@@ -36,7 +36,26 @@ const EndHome = () => {
 
     console.log(fullName);
 
-    
+    fetch("http://localhost:3000/cars", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify(formData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data.id) {
+          console.log("Form submitted successfully");
+        } else {
+          throw new Error("Failed to submit form");
+        }
+      })
+      .catch((error) => {
+        console.error("Form submission error:", error);
+      });
   };
 
   return (
