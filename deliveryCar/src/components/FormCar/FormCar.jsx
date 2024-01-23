@@ -4,7 +4,22 @@ import * as yup from "yup";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, TextField } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  FormControlLabel,
+  FormGroup,
+  FormLabel,
+  Radio,
+  RadioGroup,
+  Switch,
+  TextField,
+} from "@mui/material";
+import React from "react";
+// import { ReactComponent as CustomRadioIcon } from '../../assets/form/Card Image.svg'
+import styles from "./styles.module.css";
+import carRadio1 from "../../assets/form/Card Image.svg";
+import RadioForm from "../../components/RadioForm/RadioForm";
 
 const schema = yup
   .object({
@@ -15,23 +30,28 @@ const schema = yup
   .required();
 
 const FormCar = () => {
+  const [statusSwitch, setStatusSwitch] = useState(false);
+  const [selectedCar, setSelectedCar] = useState("");
+
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
     reset,
+    control,
   } = useForm({ resolver: yupResolver(schema) });
 
   const handleSubmitForm = (data) => {
     console.log(data);
 
-    const { fullName, emailUser, placaUser } = data;
+    const { fullName, emailUser, placaUser, selectedCar } = data;
 
     const formData = {
       fullName,
       emailUser,
       placaUser,
+      selectedCar,
     };
 
     console.log(fullName);
@@ -58,27 +78,96 @@ const FormCar = () => {
       });
   };
 
+  const handleChangeSwitch = () => {
+    setStatusSwitch((prevState) => !prevState);
+  };
+
+  const handleTrackRadio = (event) => {
+    setSelectedCar(event.target.value);
+  };
+
   return (
     <section>
       <form onSubmit={handleSubmit(handleSubmitForm)}>
-        <TextField
-          id="nameUser"
-          label="Full Name"
-          name="fullName"
-          {...register("fullName")}
-        />
-        <TextField
-          id="emailUser"
-          label="Email Address"
-          name="emailUser"
-          {...register("emailUser")}
-        />
-        <TextField
-          id="placaUser"
-          label="Referral Code"
-          name="placaUser"
-          {...register("placaUser")}
-        />
+        <FormGroup>
+          <TextField
+            id="nameUser"
+            label="Full Name"
+            name="fullName"
+            {...register("fullName")}
+          />
+          <TextField
+            id="emailUser"
+            label="Email Address"
+            name="emailUser"
+            {...register("emailUser")}
+          />
+          <TextField
+            id="placaUser"
+            label="Referral Code"
+            name="placaUser"
+            {...register("placaUser")}
+          />
+
+          <FormControlLabel
+            control={
+              <Switch checked={statusSwitch} onChange={handleChangeSwitch} />
+            }
+            label="I drive my own car"
+          />
+
+          {statusSwitch && (
+            <FormControl>
+              <FormLabel id="demo-radio-buttons-group-label">
+                Select your car type
+              </FormLabel>
+              <RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                name="radio-buttons-group"
+              >
+                <RadioForm
+                  label="Sedan"
+                  value="Sedan"
+                  control={control}
+                  register={register}
+                  handleTrackRadio={handleTrackRadio}
+                  selectedCar={selectedCar}
+                  svg={carRadio1}
+                />
+
+                <RadioForm
+                  label="SUV/Van"
+                  value="SUV/Van"
+                  control={control}
+                  register={register}
+                  handleTrackRadio={handleTrackRadio}
+                  selectedCar={selectedCar}
+                  svg={carRadio1}
+                />
+
+                <RadioForm
+                  label="Semi Luxury"
+                  value="Semi Luxury"
+                  control={control}
+                  register={register}
+                  handleTrackRadio={handleTrackRadio}
+                  selectedCar={selectedCar}
+                  svg={carRadio1}
+                />
+
+                <RadioForm
+                  label="Luxury Car"
+                  value="Luxury Car"
+                  control={control}
+                  register={register}
+                  handleTrackRadio={handleTrackRadio}
+                  selectedCar={selectedCar}
+                  svg={carRadio1}
+                />
+              </RadioGroup>
+            </FormControl>
+          )}
+        </FormGroup>
 
         <Button type="submit" variant="contained">
           Submit
