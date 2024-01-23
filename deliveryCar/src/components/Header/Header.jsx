@@ -1,7 +1,7 @@
 import { AppBar, Box, IconButton, Tab, Tabs, Toolbar } from "@mui/material";
 import logo from "../../assets/Logo.svg";
-import userLogo from '../../assets/user-avatar.svg'
-import notification from '../../assets/bell-icon.svg'
+import userLogo from "../../assets/user-avatar.svg";
+import notification from "../../assets/bell-icon.svg";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
@@ -24,13 +24,21 @@ const Header = () => {
           </IconButton>
 
           <Tabs id="headerMenu" sx={{ display: "flex" }}>
-            <Tab label="Home" onClick={() => handleGoTo("")} />
+            <Tab label="Home" value="Home" onClick={() => handleGoTo("")} />
 
-            <Tab label="Getting a Taxi" />
+            <Tab label="Getting a Taxi" value="Getting a Taxi" />
 
-            <Tab label="Mobile App" onClick={() => handleGoTo("mobile-app")} />
+            <Tab
+              label="Mobile App"
+              value="Mobile App"
+              onClick={() => handleGoTo("mobile-app")}
+            />
 
-            <Tab label="Contact Us" onClick={() => handleGoTo("contact-us")} />
+            <Tab
+              label="Contact Us"
+              value="Contact Us"
+              onClick={() => handleGoTo("contact-us")}
+            />
           </Tabs>
 
           <Box>
