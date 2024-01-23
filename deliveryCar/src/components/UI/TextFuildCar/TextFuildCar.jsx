@@ -1,14 +1,20 @@
-import { TextField } from '@mui/material'
+import { TextField } from "@mui/material";
 
-const TextFuildCar = ({...props}) => {
+const TextFuildCar = ({ ...props }) => {
   return (
-    <TextField {...props} color="secondary" sx={{
-        '&:not(:focus)': {
-          borderColor: 'secondary',
+    <TextField
+      {...props}
+      color='secondary'
+      sx={{
+        "& .MuiOutlinedInput-notchedOutline": {
+          borderColor: "white"
+        },
+        "&:hover .MuiOutlinedInput-notchedOutline": {
+          borderColor: "white",
         },
       }}
     />
-  )
-}
+  );
+};
 
-export default TextFuildCar
+export default TextFuildCar;
