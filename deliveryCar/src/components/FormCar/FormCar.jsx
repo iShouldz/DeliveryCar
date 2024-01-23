@@ -139,7 +139,7 @@ const FormCar = () => {
             value={citySelected}
             onChange={(event, newValue) => setCitySelected(newValue)}
             getOptionLabel={(option) => option}
-           
+            disabled={country === null}
           />
           <FormControlLabel
             control={
