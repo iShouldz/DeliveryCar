@@ -22,12 +22,15 @@ import jsonCountry from "../../utils/countries-and-cities.json";
 import styles from "./styles.module.css";
 import carRadio1 from "../../assets/form/Card Image.svg";
 import RadioForm from "../../components/RadioForm/RadioForm";
+import ErrosForm from "../ErrosForm/ErrosForm";
 
 const schema = yup
   .object({
-    fullName: yup.string().required(),
+    fullName: yup.string().min(5).required(),
     emailUser: yup.string().required(),
     placaUser: yup.string().required(),
+    selectedCar: yup.string().required(),
+    country: yup.string().required()
   })
   .required();
 
@@ -115,18 +118,26 @@ const FormCar = () => {
             name="fullName"
             {...register("fullName")}
           />
+
+          <ErrosForm errors={errors?.fullName?.message} />
+
           <TextField
             id="emailUser"
             label="Email Address"
             name="emailUser"
             {...register("emailUser")}
           />
+
+          <ErrosForm errors={errors?.emailUser?.message} />
+
           <TextField
             id="placaUser"
             label="Referral Code"
             name="placaUser"
             {...register("placaUser")}
           />
+
+          <ErrosForm errors={errors?.placaUser?.message} />
 
           <Autocomplete
             options={Object.keys(jsonCountry)}
@@ -141,6 +152,8 @@ const FormCar = () => {
             value={country}
             onChange={(event, newValue) => setCountry(newValue)}
           />
+
+          <ErrosForm errors={errors?.placaUser?.message} />
 
           <Autocomplete
             options={city}
@@ -157,6 +170,8 @@ const FormCar = () => {
             getOptionLabel={(option) => option}
             disabled={country === null}
           />
+
+          <ErrosForm errors={errors?.placaUser?.message} />
           <FormControlLabel
             control={
               <Switch checked={statusSwitch} onChange={handleChangeSwitch} />
