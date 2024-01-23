@@ -26,11 +26,17 @@ import ErrosForm from "../ErrosForm/ErrosForm";
 
 const schema = yup
   .object({
-    fullName: yup.string().matches(/[a-zA-Z]+ [a-zA-Z]+/, "Required a full name").required(),
-    emailUser: yup.string().required(),
+    fullName: yup
+      .string()
+      .matches(/^[a-zA-Z]+ [a-zA-Z]+$/, "Required a full name")
+      .required(),
+    emailUser: yup
+      .string()
+      .matches(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i, "Email not valid")
+      .required("Email required"),
     placaUser: yup
       .string()
-      .matches(/[a-zA-Z]{3}-\d{3}$/, "Invalid refferal")
+      .matches(/^[a-zA-Z]{3}-\d{3}$/, "Invalid refferal")
       .required(),
     country: yup.string().required(),
     city: yup.string().required(),
@@ -57,7 +63,7 @@ const FormCar = () => {
 
   const handleSubmitForm = (data) => {
     console.log(data);
-    console.log(errors)
+    console.log(errors);
 
     const { fullName, emailUser, placaUser, selectedCar, country, city } = data;
 
