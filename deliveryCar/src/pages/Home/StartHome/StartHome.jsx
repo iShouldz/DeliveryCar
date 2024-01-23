@@ -1,8 +1,9 @@
-import { Box, Button, FormGroup, TextField, Typography } from "@mui/material";
+import { Box, FormGroup, Typography } from "@mui/material";
 import { useState } from "react";
 import startCar from "../../../assets/startCar.png";
 import styles from "./styles.module.css";
 import TextFuildCar from "../../../components/UI/TextFuildCar/TextFuildCar";
+import ButtonCar from "../../../components/UI/ButtonCar/ButtonCar";
 
 const StartHome = () => {
   const [pickupData, setPickupData] = useState("");
@@ -55,7 +56,7 @@ const StartHome = () => {
             />
           </Box>
 
-          <Button>Find a Driver</Button>
+          <ButtonCar>Find a Driver</ButtonCar>
         </FormGroup>
       </section>
     </section>

@@ -24,6 +24,7 @@ import carRadio1 from "../../assets/form/Card Image.svg";
 import RadioForm from "../../components/RadioForm/RadioForm";
 import ErrosForm from "../ErrosForm/ErrosForm";
 import TextFuildCar from "../UI/TextFuildCar/TextFuildCar";
+import ButtonCar from "../UI/ButtonCar/ButtonCar";
 
 const schema = yup
   .object({
@@ -251,9 +252,9 @@ const FormCar = () => {
           )}
         </FormGroup>
 
-        <Button type="submit" variant="contained">
+        <ButtonCar type="submit" variant="contained">
           Submit
-        </Button>
+        </ButtonCar>
       </form>
     </section>
   );
