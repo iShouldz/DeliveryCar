@@ -36,7 +36,7 @@ const FormCar = () => {
   const [selectedCar, setSelectedCar] = useState("");
   const [country, setCountry] = useState(null);
   const [city, setCity] = useState(null);
-  const [citySelected, setCitySelected] = useState()
+  const [citySelected, setCitySelected] = useState();
 
   console.log(country);
 
@@ -52,13 +52,15 @@ const FormCar = () => {
   const handleSubmitForm = (data) => {
     console.log(data);
 
-    const { fullName, emailUser, placaUser, selectedCar } = data;
+    const { fullName, emailUser, placaUser, selectedCar, country, city } = data;
 
     const formData = {
       fullName,
       emailUser,
       placaUser,
       selectedCar,
+      country,
+      city,
     };
 
     console.log(fullName);
@@ -98,10 +100,10 @@ const FormCar = () => {
   };
 
   useEffect(() => {
-    if(country in jsonCountry){
-      setCity(jsonCountry[country])
+    if (country in jsonCountry) {
+      setCity(jsonCountry[country]);
     }
-  }, [country])
+  }, [country]);
 
   return (
     <section>
@@ -128,14 +130,28 @@ const FormCar = () => {
 
           <Autocomplete
             options={Object.keys(jsonCountry)}
-            renderInput={(params) => <TextField {...params} label="Contry" />}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                name="country"
+                {...register("country")}
+                label="Contry"
+              />
+            )}
             value={country}
             onChange={(event, newValue) => setCountry(newValue)}
           />
 
           <Autocomplete
             options={city}
-            renderInput={(params) => <TextField {...params} label="City" />}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                name="city"
+                {...register("city")}
+                label="City"
+              />
+            )}
             value={citySelected}
             onChange={(event, newValue) => setCitySelected(newValue)}
             getOptionLabel={(option) => option}
