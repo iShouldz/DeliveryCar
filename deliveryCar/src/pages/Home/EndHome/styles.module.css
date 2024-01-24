@@ -10,26 +10,6 @@
   background: #282828;
 }
 
-.headerForm {
-  display: flex;
-  gap: 18px;
-}
-
-#headerContent > p,
-h2 {
-  margin: 0;
-}
-
-#headerContent > h2 {
-  color: #FBA403
-}
-
-#headerContent {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-direction: column;
-}
 
 .containerMain{
     display: flex;
