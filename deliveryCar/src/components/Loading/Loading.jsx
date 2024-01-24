@@ -11,7 +11,7 @@ import errorImage from "../../assets/errorRequest.png";
 const Loading = () => {
   const dispatch = useDispatch();
   const [tipMensage, setTipMensage] = useState(0);
-  const [stateModal, setStateModal] = useState(true);
+  const [stateModal, setStateModal] = useState(false);
   const TIPS_ARRAY = [
     "We offer the best services on the world, my cat say that! :)",
     "Our next step is change drivers to dogs!",
@@ -42,6 +42,9 @@ const Loading = () => {
       if (data.length !== undefined) {
         dispatch(carActions.handleCarItem(data));
         dispatch(carActions.handleFetching("success"));
+      }
+      if(data.length === undefined){
+        setStateModal(true)
       }
       
     } catch (error) {
@@ -81,7 +84,7 @@ const Loading = () => {
       </article>
 
       <ModalTemplate
-        open={true}
+        open={stateModal}
         title="Houston, we have a problem"
         description="GET PROBLEM"
         img={errorImage}
