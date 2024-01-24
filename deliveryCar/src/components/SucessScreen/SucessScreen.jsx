@@ -6,14 +6,15 @@ import check from "../../assets/check.png";
 import car from "../../assets/form/CarFormImage.svg";
 import TextFieldDisplay from "../UI/TextFieldDisplay/TextFieldDisplay";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { carActions } from "../../store/cars/carSlice";
 
 const SucessScreen = () => {
   const [dataGet, setDataGet] = useState([]);
   const fetchStatus = useSelector((state) => state.cars.fetching);
   const fetchItem = useSelector((state) => state.cars.item);
   const lastElement = fetchItem[fetchItem.length - 1];
-
+  const dispatch = useDispatch();
   console.log(fetchItem);
   console.log(lastElement);
 
@@ -34,6 +35,11 @@ const SucessScreen = () => {
     } catch (error) {
       console.error("Error deleting car:", error);
     }
+  };
+
+  const handleSubmitNewCar = () => {
+    deleteCar(lastElement.id);
+    dispatch(carActions.handleFetching("form"));
   };
 
   return (
@@ -61,8 +67,9 @@ const SucessScreen = () => {
       </section>
 
       <img src={car} />
-      <button onClick={() => deleteCar(lastElement.id)}>deletar</button>
-      <ButtonCar color="primary.light">Submit a new car </ButtonCar>
+      <ButtonCar color="primary.light" onClick={handleSubmitNewCar}>
+        Submit a new car{" "}
+      </ButtonCar>
     </section>
   );
 };
