@@ -5,7 +5,8 @@ export const theme = createTheme({
         primary: {
             main: '#282828', //cinza de dentro
             light: '#FFF',
-            grayRef: '#383838'
+            grayRef: '#383838',
+            background: '#242424'
         },
         secondary: {
             main: '#FBA403',

@@ -28,8 +28,8 @@ const Header = () => {
 
   return (
     <header>
-      <AppBar position="static">
-        <Toolbar sx={{ justifyContent: "space-between" }}>
+      <AppBar position="static" elevation={0} sx={{backgroundColor: 'primary.background' }}>
+        <Toolbar sx={{ justifyContent: "space-between", color: 'primary.background' }}>
           <IconButton
             size="large"
             aria-controls="headerMenu"
@@ -43,7 +43,7 @@ const Header = () => {
               label="Home"
               value="Home"
               sx={{
-                color: selectedUrl === "" ? "secondary.light" : "primary.light",
+                color: selectedUrl === "" ? "secondary.main" : "primary.light",
                 textTransform: "none",
               }}
               onClick={() => handleGoTo("")}
@@ -54,7 +54,7 @@ const Header = () => {
               sx={{
                 color:
                   selectedUrl === "getTaxi"
-                    ? "secondary.light"
+                    ? "secondary.main"
                     : "primary.light",
                 textTransform: "none",
               }}
@@ -68,7 +68,7 @@ const Header = () => {
               sx={{
                 color:
                   selectedUrl === "mobile-app"
-                    ? "secondary.light"
+                    ? "secondary.main"
                     : "primary.light",
                 textTransform: "none",
               }}
@@ -81,7 +81,7 @@ const Header = () => {
               sx={{
                 color:
                   selectedUrl === "contact-us"
-                    ? "secondary.light"
+                    ? "secondary.main"
                     : "primary.light",
                 textTransform: "none",
               }}
