@@ -1,0 +1,44 @@
+.linksContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 80px;
+}
+
+#links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.allContainer {
+  display: flex;
+  padding: 40px 80px 40px 80px;
+  justify-content: space-between;
+  margin-top: 125px;
+}
+
+#socialContainer > img {
+  width: 36.571px;
+  height: 36.571px;
+}
+
+#socialContainer {
+  display: flex;
+  gap: 25px;
+}
+
+.infoContainer {
+  display: flex;
+  gap: 16px;
+}
+
+.infoContainer > img {
+  width: 125.627px;
+  height: 60.129px;
+}
+
+.infoContainer > address {
+  font-style: normal;
+  color: #b3b3b3;
+  font-family: Roboto;
+}
