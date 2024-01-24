@@ -1,10 +1,27 @@
-.startContainer{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.startContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 74px 89px;
 }
 
-.simpleFormContainer{
-    display: flex;
-    flex-direction: column
+.simpleFormContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+#span {
+  color: #fba403;
+}
+
+.containerMain {
+  display: flex;
+  width: 28.333vw; 
+  padding: 30px;
+  flex-direction: column;
+  gap: 24px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #282828;
 }
