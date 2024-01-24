@@ -17,6 +17,7 @@ import {
   Select,
   Switch,
   TextField,
+  Typography,
 } from "@mui/material";
 import React from "react";
 import jsonCountry from "../../utils/countries-and-cities.json";
@@ -32,6 +33,10 @@ import { useDispatch } from "react-redux";
 import { carActions } from "../../store/cars/carSlice";
 import ModalTemplate from "../ModalTemplate/ModalTemplate";
 import errorImage from "../../assets/errorRequest.png";
+import SedanRadio from "../UI/SedanRadio/SedanRadio";
+import SuvRadio from "../UI/SuvRadio/SuvRadio";
+import SemiRadio from "../UI/SemiRadio/SemiRadio";
+import LuxuryRadio from "../UI/LuxuryRadio/LuxuryRadio";
 
 const schema = yup
   .object({
@@ -108,7 +113,7 @@ const FormCar = () => {
         console.log(data);
         if (data.id) {
           console.log("Form submitted successfully");
-          dispatch(carActions.handleFetching('loading'))
+          dispatch(carActions.handleFetching("loading"));
         } else {
           throw new Error("Failed to submit form");
         }
@@ -129,7 +134,7 @@ const FormCar = () => {
 
   const handleReload = () => {
     window.location.reload();
-  }
+  };
 
   const handleChangeCountry = (event) => {
     setCountry(event.target.value);
@@ -164,14 +169,14 @@ const FormCar = () => {
                 color: "white",
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "white",
-                color: "white",
+                borderColor: "#FBA403 !important",
+                color: "white !important",
               },
               "& input": {
                 color: "white",
               },
               "& label": {
-                color: "white",
+                color: "secondary.labelColor",
               },
             }}
           />
@@ -191,14 +196,14 @@ const FormCar = () => {
                 color: "white",
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "white",
-                color: "white",
+                borderColor: "#FBA403 !important",
+                color: "white !important",
               },
               "& input": {
                 color: "white",
               },
               "& label": {
-                color: "white",
+                color: "secondary.labelColor",
               },
             }}
             error={errors?.emailUser?.message !== undefined}
@@ -214,21 +219,45 @@ const FormCar = () => {
                 name="country"
                 {...register("country")}
                 label="Contry"
+                error={errors?.country?.message !== undefined}
+                sx={{
+                  color: "secondary",
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "white",
+                    color: "white",
+                  },
+                  "&:hover .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "#FBA403 !important",
+                    color: "white !important",
+                  },
+                  "& input": {
+                    color: "white",
+                  },
+                  "& label": {
+                    color: "secondary.labelColor",
+                  },
+                }}
               />
             )}
             value={country}
             onChange={(event, newValue) => setCountry(newValue)}
             sx={{
+              color: "white",
               "& .MuiOutlinedInput-notchedOutline": {
                 borderColor: "white",
                 color: "white",
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "white",
+                borderColor: "#FBA403 !important",
+                color: "white !important",
+              },
+              "& input": {
                 color: "white",
               },
+              "& label": {
+                color: "secondary.labelColor",
+              },
             }}
-            error={errors?.country?.message !== undefined}
           />
 
           <ErrosForm errors={errors?.country?.message} />
@@ -241,6 +270,7 @@ const FormCar = () => {
                 name="city"
                 {...register("city")}
                 label="City"
+                error={errors?.city?.message !== undefined}
               />
             )}
             value={citySelected}
@@ -249,15 +279,39 @@ const FormCar = () => {
             disabled={country === null}
             color="primary.light"
             sx={{
+              color: "white",
               "& .MuiOutlinedInput-notchedOutline": {
                 borderColor: "white",
                 color: "white",
               },
-              "&hover": {
-                color: "primary.light",
+              "&:hover .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#FBA403 ",
+                color: "white !important",
+              },
+              "& input": {
+                color: "white",
+              },
+              "& label": {
+                color: "secondary.labelColor",
+              },
+              "&:disabled": {
+                color: "white",
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "white !important",
+                  color: "white !important",
+                },
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "gray !important",
+                  color: "white !important",
+                },
+                "& input": {
+                  color: "white !important",
+                },
+                "& label": {
+                  color: "white !important",
+                },
               },
             }}
-            error={errors?.city?.message !== undefined}
           />
 
           <ErrosForm errors={errors?.city?.message} />
@@ -276,14 +330,14 @@ const FormCar = () => {
                 color: "white",
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "white",
-                color: "white",
+                borderColor: "#FBA403 !important",
+                color: "white !important",
               },
               "& input": {
                 color: "white",
               },
               "& label": {
-                color: "white",
+                color: "secondary.labelColor",
               },
             }}
           />
@@ -322,8 +376,9 @@ const FormCar = () => {
           {statusSwitch && (
             <FormControl>
               <FormLabel id="demo-radio-buttons-group-label">
-                Select your car type
+                
               </FormLabel>
+              <Typography variant='h6' sx={{color: 'secondary.main', fontWeight: "bold"}}>Select your car type</Typography>
               <section className={styles.radioContainer}>
                 <RadioForm
                   label="Sedan"
@@ -332,8 +387,11 @@ const FormCar = () => {
                   register={register}
                   handleTrackRadio={handleTrackRadio}
                   selectedCar={selectedCar}
-                  svg={carRadio1}
-                />
+                >
+                  <SedanRadio
+                    type={selectedCar === "Sedan" ? "black" : "#FBA403"}
+                  />
+                </RadioForm>
 
                 <RadioForm
                   label="SUV/Van"
@@ -343,7 +401,11 @@ const FormCar = () => {
                   handleTrackRadio={handleTrackRadio}
                   selectedCar={selectedCar}
                   svg={carRadio1}
-                />
+                >
+                  <SuvRadio
+                    type={selectedCar === "SUV/Van" ? "black" : "#FBA403"}
+                  />
+                </RadioForm>
 
                 <RadioForm
                   label="Semi Luxury"
@@ -353,7 +415,11 @@ const FormCar = () => {
                   handleTrackRadio={handleTrackRadio}
                   selectedCar={selectedCar}
                   svg={carRadio1}
-                />
+                >
+                  <SemiRadio
+                    type={selectedCar === "Semi Luxury" ? "black" : "#FBA403"}
+                  />
+                </RadioForm>
 
                 <RadioForm
                   label="Luxury Car"
@@ -363,7 +429,11 @@ const FormCar = () => {
                   handleTrackRadio={handleTrackRadio}
                   selectedCar={selectedCar}
                   svg={carRadio1}
-                />
+                >
+                  <LuxuryRadio
+                    type={selectedCar === "Luxury Car" ? "black" : "#FBA403"}
+                  />
+                </RadioForm>
               </section>
 
               <ErrosForm errors={errors?.selectedCar?.message} />

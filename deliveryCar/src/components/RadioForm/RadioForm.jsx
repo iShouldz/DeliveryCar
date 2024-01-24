@@ -1,30 +1,37 @@
 /* eslint-disable react/prop-types */
+import { getValue } from "@mui/system";
 import styles from "./styles.module.css";
-import { useController } from 'react-hook-form';
+import { useController } from "react-hook-form";
 
-const RadioForm = ({ label, value, control, register, handleTrackRadio, selectedCar, svg}) => {
+const RadioForm = ({
+  label,
+  value,
+  control,
+  register,
+  handleTrackRadio,
+  selectedCar,
+  children,
+}) => {
   const { field } = useController({
-    name: 'selectedCar',
+    name: "selectedCar",
     control,
-    defaultValue: '',
+    defaultValue: "",
   });
 
   return (
     <label
-      className={
-        selectedCar === value ? styles.boxRadio : styles.boxRadioYello
-      }
+      className={selectedCar === value ? styles.boxRadio : styles.boxRadioYello}
     >
-      <img src={svg} alt="Car Icon" />
+      {children}
       <input
         type="radio"
         value={value}
-        {...register('selectedCar')}
+        {...register("selectedCar")}
         onChange={(e) => {
           field.onChange(e);
           handleTrackRadio(e);
         }}
-        style={{ appearance: 'none', display: 'none' }}
+        style={{ appearance: "none", display: "none" }}
         checked={selectedCar === value}
       />
       {label}
