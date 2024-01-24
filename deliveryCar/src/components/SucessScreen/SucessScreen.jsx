@@ -11,9 +11,9 @@ const SucessScreen = () => {
     <section>
       <h1>Sucess!</h1>
 
-      {/* {dataGet.map((item) => (
-        <p key={item.id}>{item.fullName}</p>
-      ))} */}
+      {fetchItem.fullName}
+      {fetchItem.city}
+      {fetchItem.country}
     </section>
   );
 };
