@@ -25,6 +25,7 @@ import RadioForm from "../../components/RadioForm/RadioForm";
 import ErrosForm from "../ErrosForm/ErrosForm";
 import TextFuildCar from "../UI/TextFuildCar/TextFuildCar";
 import ButtonCar from "../UI/ButtonCar/ButtonCar";
+import carForm from "../../assets/form/CarFormImage.svg";
 
 const schema = yup
   .object({
@@ -60,8 +61,6 @@ const FormCar = () => {
   const [city, setCity] = useState(null);
   const [citySelected, setCitySelected] = useState();
 
-  // console.log(country);
-
   const {
     register,
     handleSubmit,
@@ -70,7 +69,7 @@ const FormCar = () => {
     reset,
     control,
   } = useForm({ resolver: yupResolver(schema) });
-
+  console.log(errors);
   const handleSubmitForm = (data) => {
     console.log(data);
     console.log(errors);
@@ -134,12 +133,15 @@ const FormCar = () => {
         onSubmit={handleSubmit(handleSubmitForm)}
         className={styles.formContainer}
       >
+        
+
         <FormGroup className={styles.groupContainer}>
           <TextFuildCar
             id="nameUser"
             label="Full Name"
             name="fullName"
             {...register("fullName")}
+            error={errors?.fullName?.message === ""}
           />
 
           <ErrosForm errors={errors?.fullName?.message} />
@@ -149,6 +151,7 @@ const FormCar = () => {
             label="Email Address"
             name="emailUser"
             {...register("emailUser")}
+            error={errors?.emailUser?.message === ""}
           />
 
           <ErrosForm errors={errors?.emailUser?.message} />
@@ -165,6 +168,17 @@ const FormCar = () => {
             )}
             value={country}
             onChange={(event, newValue) => setCountry(newValue)}
+            sx={{
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "white",
+                color: "white",
+              },
+              "&:hover .MuiOutlinedInput-notchedOutline": {
+                borderColor: "white",
+                color: "white",
+              },
+            }}
+            error={errors?.country?.message === ""}
           />
 
           <ErrosForm errors={errors?.country?.message} />
@@ -183,6 +197,17 @@ const FormCar = () => {
             onChange={(event, newValue) => setCitySelected(newValue)}
             getOptionLabel={(option) => option}
             disabled={country === null}
+            color="primary.light"
+            sx={{
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "white",
+                color: "white",
+              },
+              "&hover": {
+                color: "primary.light",
+              },
+            }}
+            error={errors?.city?.message === ""}
           />
 
           <ErrosForm errors={errors?.city?.message} />
@@ -192,6 +217,7 @@ const FormCar = () => {
             label="Referral Code"
             name="placaUser"
             {...register("placaUser")}
+            error={errors?.placaUser?.message === ""}
           />
 
           <ErrosForm errors={errors?.placaUser?.message} />

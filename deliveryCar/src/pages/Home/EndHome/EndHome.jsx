@@ -17,7 +17,6 @@ const EndHome = () => {
             </p>
           </article>
         </section>
-        
         <FormCar />
       </div>
     </section>
