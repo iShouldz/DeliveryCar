@@ -11,6 +11,7 @@ import {
   FormGroup,
   FormLabel,
   InputLabel,
+  Modal,
   Radio,
   RadioGroup,
   Select,
@@ -29,6 +30,8 @@ import carForm from "../../assets/form/CarFormImage.svg";
 import Loading from "../Loading/Loading";
 import { useDispatch } from "react-redux";
 import { carActions } from "../../store/cars/carSlice";
+import ModalTemplate from "../ModalTemplate/ModalTemplate";
+import errorImage from "../../assets/errorRequest.png";
 
 const schema = yup
   .object({
@@ -63,6 +66,7 @@ const FormCar = () => {
   const [country, setCountry] = useState(null);
   const [city, setCity] = useState(null);
   const [citySelected, setCitySelected] = useState();
+  const [stateModal, setStateModal] = useState(false);
   const dispatch = useDispatch();
 
   const {
@@ -104,15 +108,15 @@ const FormCar = () => {
         console.log(data);
         if (data.id) {
           console.log("Form submitted successfully");
+          dispatch(carActions.handleFetching('loading'))
         } else {
           throw new Error("Failed to submit form");
         }
       })
       .catch((error) => {
         console.error("Form submission error:", error);
+        setStateModal(true);
       });
-
-      dispatch(carActions.handleFetching('loading'))
   };
 
   const handleChangeSwitch = () => {
@@ -123,6 +127,10 @@ const FormCar = () => {
     setSelectedCar(event.target.value);
   };
 
+  const handleReload = () => {
+    window.location.reload();
+  }
+
   const handleChangeCountry = (event) => {
     setCountry(event.target.value);
   };
@@ -132,6 +140,8 @@ const FormCar = () => {
       setCity(jsonCountry[country]);
     }
   }, [country]);
+
+  console.log(stateModal);
 
   return (
     <section>
@@ -367,6 +377,14 @@ const FormCar = () => {
           >
             Submit
           </ButtonCar>
+
+          <ModalTemplate
+            open={stateModal}
+            title="Houston, we have a problem"
+            description="It`s a problem, i guess better you reload that POST"
+            img={errorImage}
+            actionButton={handleReload}
+          />
         </FormGroup>
       </form>
     </section>
