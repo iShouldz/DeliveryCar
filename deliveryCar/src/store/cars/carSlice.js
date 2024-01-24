@@ -1,12 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-const initialCarsState = { fetching: false };
+const initialCarsState = { fetching: 'form', item: [] };
 
 const carSlice = createSlice({
     name: 'cars',
     initialState: initialCarsState,
     reducers: {
-        handleFetching(state){
-            state.fetching = !state.fetching
+        handleFetching(state, action){
+            state.fetching = action.payload
+        },
+        handleCarItem(state, action){
+            state.item = action.payload
         }
     }
 })
