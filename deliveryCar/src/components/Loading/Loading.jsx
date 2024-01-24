@@ -5,10 +5,13 @@ import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import carLoading from "../../assets/loadingCar.png";
 import lampada from "../../assets/lampada.png";
+import ModalTemplate from "../ModalTemplate/ModalTemplate";
+import errorImage from "../../assets/errorRequest.png";
 
 const Loading = () => {
   const dispatch = useDispatch();
   const [tipMensage, setTipMensage] = useState(0);
+  const [stateModal, setStateModal] = useState(true);
   const TIPS_ARRAY = [
     "We offer the best services on the world, my cat say that! :)",
     "Our next step is change drivers to dogs!",
@@ -26,19 +29,21 @@ const Loading = () => {
         img.onerror = reject;
       });
     };
-    preloadImage(carLoading)
-      .then(() => {
-        fetchData();
-      })
-  }, []); 
+    preloadImage(carLoading).then(() => {
+      fetchData();
+    });
+  }, []);
 
   const fetchData = async () => {
     try {
       const res = await fetch("http://localhost:3000/cars/");
       const data = await res.json();
-      console.log(data);
-      dispatch(carActions.handleCarItem(data));
-    //   dispatch(carActions.handleFetching("success"));
+      console.log(data.length);
+      if (data.length !== undefined) {
+        dispatch(carActions.handleCarItem(data));
+        dispatch(carActions.handleFetching("success"));
+      }
+      
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -74,6 +79,14 @@ const Loading = () => {
         <img src={lampada} />
         <Typography>{TIPS_ARRAY[tipMensage]}</Typography>
       </article>
+
+      <ModalTemplate
+        open={true}
+        title="Houston, we have a problem"
+        description="GET PROBLEM"
+        img={errorImage}
+        actionButton={() => window.location.reload()}
+      />
     </section>
   );
 };
