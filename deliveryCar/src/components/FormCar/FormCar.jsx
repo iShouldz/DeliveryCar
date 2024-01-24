@@ -139,7 +139,7 @@ const FormCar = () => {
             label="Full Name"
             name="fullName"
             {...register("fullName")}
-            error={errors?.fullName?.message === ""}
+            error={errors?.fullName?.message !== undefined}
             color="secondary"
             sx={{
               color: "white",
@@ -185,7 +185,7 @@ const FormCar = () => {
                 color: "white",
               },
             }}
-            error={errors?.emailUser?.message === ""}
+            error={errors?.emailUser?.message !== undefined}
           />
 
           <ErrosForm errors={errors?.emailUser?.message} />
@@ -212,7 +212,7 @@ const FormCar = () => {
                 color: "white",
               },
             }}
-            error={errors?.country?.message === ""}
+            error={errors?.country?.message !== undefined}
           />
 
           <ErrosForm errors={errors?.country?.message} />
@@ -241,7 +241,7 @@ const FormCar = () => {
                 color: "primary.light",
               },
             }}
-            error={errors?.city?.message === ""}
+            error={errors?.city?.message !== undefined}
           />
 
           <ErrosForm errors={errors?.city?.message} />
@@ -251,7 +251,7 @@ const FormCar = () => {
             label="Referral Code"
             name="placaUser"
             {...register("placaUser")}
-            error={errors?.placaUser?.message === ""}
+            error={errors?.placaUser?.message !== undefined}
             color="secondary"
             sx={{
               color: "white",
