@@ -1,0 +1,12 @@
+.loadingContent{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#tips{
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+}
