@@ -133,24 +133,58 @@ const FormCar = () => {
         onSubmit={handleSubmit(handleSubmitForm)}
         className={styles.formContainer}
       >
-        
-
         <FormGroup className={styles.groupContainer}>
-          <TextFuildCar
+          <TextField
             id="nameUser"
             label="Full Name"
             name="fullName"
             {...register("fullName")}
             error={errors?.fullName?.message === ""}
+            color="secondary"
+            sx={{
+              color: "white",
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "white",
+                color: "white",
+              },
+              "&:hover .MuiOutlinedInput-notchedOutline": {
+                borderColor: "white",
+                color: "white",
+              },
+              "& input": {
+                color: "white",
+              },
+              "& label": {
+                color: "white",
+              },
+            }}
           />
 
           <ErrosForm errors={errors?.fullName?.message} />
 
-          <TextFuildCar
+          <TextField
             id="emailUser"
             label="Email Address"
             name="emailUser"
             {...register("emailUser")}
+            color="secondary"
+            sx={{
+              color: "white",
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "white",
+                color: "white",
+              },
+              "&:hover .MuiOutlinedInput-notchedOutline": {
+                borderColor: "white",
+                color: "white",
+              },
+              "& input": {
+                color: "white",
+              },
+              "& label": {
+                color: "white",
+              },
+            }}
             error={errors?.emailUser?.message === ""}
           />
 
@@ -212,12 +246,30 @@ const FormCar = () => {
 
           <ErrosForm errors={errors?.city?.message} />
 
-          <TextFuildCar
+          <TextField
             id="placaUser"
             label="Referral Code"
             name="placaUser"
             {...register("placaUser")}
             error={errors?.placaUser?.message === ""}
+            color="secondary"
+            sx={{
+              color: "white",
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "white",
+                color: "white",
+              },
+              "&:hover .MuiOutlinedInput-notchedOutline": {
+                borderColor: "white",
+                color: "white",
+              },
+              "& input": {
+                color: "white",
+              },
+              "& label": {
+                color: "white",
+              },
+            }}
           />
 
           <ErrosForm errors={errors?.placaUser?.message} />
