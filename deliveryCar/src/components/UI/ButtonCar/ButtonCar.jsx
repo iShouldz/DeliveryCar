@@ -1,12 +1,17 @@
 /* eslint-disable react/prop-types */
-import { Button } from "@mui/material"
+import { Button } from "@mui/material";
 
-const ButtonCar = ({children, color, ...props}) => {
+const ButtonCar = ({ children, sizeW, sizeH, color, ...props }) => {
   return (
-    <Button {...props} color="secondary" variant="contained" sx={{borderRadius: '6px', color: color}}>
-        {children}
+    <Button
+      {...props}
+      color="secondary"
+      variant="contained"
+      sx={{ borderRadius: "6px", color: color, width: sizeW, heigth: sizeH }}
+    >
+      {children}
     </Button>
-  )
-}
+  );
+};
 
-export default ButtonCar
+export default ButtonCar;
