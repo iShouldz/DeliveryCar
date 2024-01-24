@@ -4,17 +4,23 @@ import { useEffect, useState } from "react";
 import startCar from "../../../assets/startCar.png";
 import styles from "./styles.module.css";
 import TextFuildCar from "../../../components/UI/TextFuildCar/TextFuildCar";
-import jsonCountry from "../../../utils/countries-and-cities.json";
 
 const StartHome = () => {
   const [pickupData, setPickupData] = useState("");
   const [destinationData, setDestinationData] = useState("");
   const [currentLocation, setCurrentLocation] = useState("");
-  const [country, setCountry] = useState(null);
+  const [latitude, setLatitude] = useState({
+    latitude: "",
+    longitude: "",
+  });
   const [city, setCity] = useState(null);
+
+
 
   console.log(pickupData);
   console.log(destinationData);
+  console.log(latitude);
+  console.log(city)
 
   const handleSubmit = () => {
     console.log();
@@ -24,6 +30,7 @@ const StartHome = () => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
+        setLatitude({ latitude, longitude });
         const nominatimUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
         fetch(nominatimUrl)
           .then((response) => response.json())
@@ -32,7 +39,8 @@ const StartHome = () => {
               console.log(data);
               const city = data.address.city_district;
               const state = data.address.state;
-              const countryUser = data.address.country;
+              const countryUser = data.address.country
+              
               setCurrentLocation(`${city}, ${state}, ${countryUser}`);
             } else {
               console.error(
@@ -50,11 +58,12 @@ const StartHome = () => {
     );
   }, []);
 
-  useEffect(() => {
-    if (country in jsonCountry) {
-      setCity(jsonCountry[country]);
-    }
-  }, [country]);
+  const handleMaps = () => {
+    const url = `https://www.google.com.br/maps/dir/${latitude.latitude},${latitude.longitude}/${destinationData}/`;
+
+    window.location.href = url;
+  };
+
 
   return (
     <section className={styles.startContainer}>
@@ -133,6 +142,7 @@ const StartHome = () => {
                 </g>
               </svg>
             }
+            onClick={handleMaps}
           >
             Find a Driver
           </Button>

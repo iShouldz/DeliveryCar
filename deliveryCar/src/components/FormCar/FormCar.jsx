@@ -26,6 +26,9 @@ import ErrosForm from "../ErrosForm/ErrosForm";
 import TextFuildCar from "../UI/TextFuildCar/TextFuildCar";
 import ButtonCar from "../UI/ButtonCar/ButtonCar";
 import carForm from "../../assets/form/CarFormImage.svg";
+import Loading from "../Loading/Loading";
+import { useDispatch } from "react-redux";
+import { carActions } from "../../store/cars/carSlice";
 
 const schema = yup
   .object({
@@ -60,6 +63,7 @@ const FormCar = () => {
   const [country, setCountry] = useState(null);
   const [city, setCity] = useState(null);
   const [citySelected, setCitySelected] = useState();
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -107,6 +111,8 @@ const FormCar = () => {
       .catch((error) => {
         console.error("Form submission error:", error);
       });
+
+      dispatch(carActions.handleFetching('loading'))
   };
 
   const handleChangeSwitch = () => {
