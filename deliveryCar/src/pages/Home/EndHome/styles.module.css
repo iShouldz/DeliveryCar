@@ -1,7 +1,7 @@
 .formContainer {
   display: flex;
   width: 1324px;
-  height: 871px;
+
   padding: 30px;
   flex-direction: column;
   gap: 24px;

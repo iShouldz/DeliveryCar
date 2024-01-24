@@ -7,8 +7,8 @@
 }
 
 .formContainer{
-  width: 1324px;
-  height: 871px;
+  width: 100%;
+  height: fit-content;
 }
 
 .groupContainer{
