@@ -7,11 +7,13 @@ import car from "../../assets/sucess.png";
 import TextFieldDisplay from "../UI/TextFieldDisplay/TextFieldDisplay";
 import { useDispatch, useSelector } from "react-redux";
 import { carActions } from "../../store/cars/carSlice";
-import { Container } from "@mui/system";
+import ModalUpdate from "../ModalUpdate/ModalUpdate";
+import { useState } from "react";
 
 const SucessScreen = () => {
   const fetchItem = useSelector((state) => state.cars.item);
   const lastElement = fetchItem[fetchItem.length - 1];
+  const [stateUpdate, setStateUpdate] = useState(false);
   const dispatch = useDispatch();
   console.log(fetchItem);
   console.log(lastElement);
@@ -35,6 +37,22 @@ const SucessScreen = () => {
     }
   };
 
+  const oldData = () => {
+    if (lastElement.selectedCar === "") {
+      return {
+        country: lastElement.fullName,
+        city: lastElement.city,
+        emailUser: lastElement.emailUser,
+      };
+    } else {
+      return {
+        country: lastElement.country,
+        city: lastElement.city,
+        emailUser: lastElement.emailUser,
+        selectedCar: lastElement.selectedCar,
+      };
+    }
+  };
   const handleSubmitNewCar = () => {
     deleteCar(lastElement.id);
     dispatch(carActions.handleFetching("form"));
@@ -51,12 +69,11 @@ const SucessScreen = () => {
         </article>
 
         <Typography sx={{ margin: "20px" }}>
-          That's data your send to us!{" "}
+          Thats data your send to us!{" "}
         </Typography>
 
         <img src={car} id={styles.img} />
       </div>
-
       <section className={styles.userInfoContainer}>
         <TextFieldDisplay value={lastElement.fullName} label="Full Name" />
         <TextFieldDisplay value={lastElement.country} label="Country" />
@@ -70,24 +87,39 @@ const SucessScreen = () => {
           <TextFieldDisplay value={lastElement.selectedCar} label="My Car" />
         )}
       </section>
-
       <div id={styles.email}>
         <Typography>
-          You'll so many info about process in your email:{" "}
+          You will recieve more info about process in your email:{" "}
         </Typography>
 
         <Typography sx={{ color: "orange" }}>
           {lastElement.emailUser}
         </Typography>
       </div>
+      <div style={{ display: "flex", gap: "15px" }}>
+        <ButtonCar
+          color="primary.light"
+          onClick={handleSubmitNewCar}
+          sx={{ marginBottom: "20px" }}
+        >
+          Submit a new car{" "}
+        </ButtonCar>
+        <ButtonCar
+          color="primary.light"
+          onClick={() => setStateUpdate((prevState) => !prevState)}
+        >
+          I guess my data is wrong
+        </ButtonCar>
+      </div>
 
-      <ButtonCar
-        color="primary.light"
-        onClick={handleSubmitNewCar}
-        sx={{ marginBottom: "20px" }}
-      >
-        Submit a new car{" "}
-      </ButtonCar>
+      <ModalUpdate
+        open={stateUpdate}
+        onClose={() => setStateUpdate(false)}
+        id={lastElement.id}
+        title="Lets fix that"
+        description="Update your data is limited a your name and refferal code"
+        oldData={oldData()}
+      />
     </section>
   );
 };
