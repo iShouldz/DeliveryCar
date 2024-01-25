@@ -177,7 +177,7 @@ const FormCar = () => {
             sx={{
               color: "white",
               "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "white",
+                borderColor: "white !important",
                 color: "white",
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
@@ -189,6 +189,12 @@ const FormCar = () => {
               },
               "& label": {
                 color: "secondary.labelColor",
+                "&.Mui-focused": {
+                  color: "white",
+                },
+                "&.MuiInputLabel-shrink": {
+                  color: "white",
+                },
               },
             }}
           />
@@ -204,7 +210,7 @@ const FormCar = () => {
             sx={{
               color: "white",
               "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "white",
+                borderColor: "white !important",
                 color: "white",
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
@@ -216,6 +222,12 @@ const FormCar = () => {
               },
               "& label": {
                 color: "secondary.labelColor",
+                "&.Mui-focused": {
+                  color: "white",
+                },
+                "&.MuiInputLabel-shrink": {
+                  color: "white",
+                },
               },
             }}
             error={errors?.emailUser?.message !== undefined}
@@ -233,9 +245,9 @@ const FormCar = () => {
                 label="Contry"
                 error={errors?.country?.message !== undefined}
                 sx={{
-                  color: "secondary",
+                  color: "white",
                   "& .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "white",
+                    borderColor: "white !important",
                     color: "white",
                   },
                   "&:hover .MuiOutlinedInput-notchedOutline": {
@@ -247,6 +259,12 @@ const FormCar = () => {
                   },
                   "& label": {
                     color: "secondary.labelColor",
+                    "&.Mui-focused": {
+                      color: "white",
+                    },
+                    "&.MuiInputLabel-shrink": {
+                      color: "white",
+                    },
                   },
                 }}
               />
@@ -293,11 +311,11 @@ const FormCar = () => {
             sx={{
               color: "white",
               "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "white",
+                borderColor: "white !important",
                 color: "white",
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#FBA403 ",
+                borderColor: "#FBA403 !important",
                 color: "white !important",
               },
               "& input": {
@@ -305,6 +323,12 @@ const FormCar = () => {
               },
               "& label": {
                 color: "secondary.labelColor",
+                "&.Mui-focused": {
+                  color: "white",
+                },
+                "&.MuiInputLabel-shrink": {
+                  color: "white",
+                },
               },
               "&:disabled": {
                 color: "white",
@@ -338,7 +362,7 @@ const FormCar = () => {
             sx={{
               color: "white",
               "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "white",
+                borderColor: "white !important",
                 color: "white",
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
@@ -350,6 +374,12 @@ const FormCar = () => {
               },
               "& label": {
                 color: "secondary.labelColor",
+                "&.Mui-focused": {
+                  color: "white",
+                },
+                "&.MuiInputLabel-shrink": {
+                  color: "white",
+                },
               },
             }}
           />
@@ -368,7 +398,7 @@ const FormCar = () => {
                     checked={field.value}
                     onChange={(e) => {
                       field.onChange(e.target.checked);
-                      handleChangeSwitch(); 
+                      handleChangeSwitch();
                     }}
                   />
                 }
