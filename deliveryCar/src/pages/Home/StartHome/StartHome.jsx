@@ -96,7 +96,7 @@ const StartHome = () => {
             id="location"
             label="Your Pickup"
             value={currentLocation}
-            type="search"
+            onClear={setCurrentLocation}
             onChange={(event) => setCurrentLocation(event.target.value)}
           />
 
@@ -104,7 +104,6 @@ const StartHome = () => {
             id="destination"
             label="Your Destination"
             value={destinationData}
-            type="search"
             onChange={(event) => setDestinationData(event.target.value)}
           />
 
