@@ -10,6 +10,15 @@ import Card from "@mui/material/Card";
 import styles from "./styles.module.css";
 
 const CardComponent = ({ img, alt, title, description }) => {
+
+  const handleSearch = () => {
+    const url = `https://www.google.com/search?q=${encodeURIComponent(
+      title
+    )} +Car`;
+  
+    window.open(url, '_blank');
+  };
+
   return (
     <Card
       sx={{ maxWidth: "331px", backgroundColor: "primary.grayRef", gap: "6px" }}
@@ -24,7 +33,7 @@ const CardComponent = ({ img, alt, title, description }) => {
       </CardContent>
 
       <CardActions sx={{ justifyContent: "flex-end" }}>
-        <Button sx={{ color: "secondary.main" }}>Learn more</Button>
+        <Button sx={{ color: "secondary.main" }} onClick={handleSearch}>Learn more</Button>
       </CardActions>
     </Card>
   );
