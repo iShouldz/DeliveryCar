@@ -12,6 +12,7 @@ import userLogo from "../../assets/user-avatar.svg";
 import notification from "../../assets/bell-icon.svg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import styles from './styles.module.css'
 
 const Header = () => {
   const navigate = useNavigate();
@@ -89,7 +90,7 @@ const Header = () => {
             />
           </Tabs>
 
-          <Box>
+          <Box className={styles.userBar}>
             <IconButton
               size="large"
               aria-controls="headerMenu"
@@ -97,6 +98,7 @@ const Header = () => {
             >
               <img src={notification} alt="Logo da empresa" />
             </IconButton>
+            <hr />
 
             <IconButton
               size="large"
