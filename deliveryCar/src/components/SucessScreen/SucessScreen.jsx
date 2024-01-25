@@ -61,7 +61,11 @@ const SucessScreen = () => {
         <TextFieldDisplay value={lastElement.fullName} label="Full Name" />
         <TextFieldDisplay value={lastElement.country} label="Country" />
         <TextFieldDisplay value={lastElement.city} label="City" />
-        <TextFieldDisplay value={lastElement.placaUser} label="Placa" />
+        <TextFieldDisplay
+          value={lastElement.placaUser.toUpperCase()}
+          style={{ textTransform: "uppercase" }}
+          label="Placa"
+        />
         {lastElement.selectedCar !== "" && (
           <TextFieldDisplay value={lastElement.selectedCar} label="My Car" />
         )}
