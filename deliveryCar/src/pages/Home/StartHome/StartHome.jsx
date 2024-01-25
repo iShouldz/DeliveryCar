@@ -13,14 +13,6 @@ const StartHome = () => {
     latitude: "",
     longitude: "",
   });
-  const [city, setCity] = useState(null);
-
-
-
-  console.log(pickupData);
-  console.log(destinationData);
-  console.log(latitude);
-  console.log(city)
 
   const handleSubmit = () => {
     console.log();
@@ -36,11 +28,10 @@ const StartHome = () => {
           .then((response) => response.json())
           .then((data) => {
             if (data.display_name) {
-              console.log(data);
               const city = data.address.city_district;
               const state = data.address.state;
-              const countryUser = data.address.country
-              
+              const countryUser = data.address.country;
+
               setCurrentLocation(`${city}, ${state}, ${countryUser}`);
             } else {
               console.error(
@@ -63,7 +54,6 @@ const StartHome = () => {
 
     window.location.href = url;
   };
-
 
   return (
     <section className={styles.startContainer}>
