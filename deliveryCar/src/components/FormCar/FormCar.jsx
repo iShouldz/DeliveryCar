@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import * as yup from "yup";
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Autocomplete,
@@ -57,11 +57,10 @@ const schema = yup
       .required(),
     country: yup.string().required(),
     city: yup.string().required(),
-    // selectedCar: yup.string().when("statusSwitch", {
-    //   is: false,
-    //   then: (schema) => schema.required("Select your car type"),
-    //   otherwise: (schema) => schema.notRequired()
-    // }),
+    switchData: yup.boolean().transform((originalValue) => {
+      return originalValue ? true : false;
+    }),
+    selectedCar: yup.string(),
   })
   .required();
 
@@ -87,7 +86,20 @@ const FormCar = () => {
     console.log(data);
     console.log(errors);
 
-    const { fullName, emailUser, placaUser, selectedCar, country, city } = data;
+    let {
+      fullName,
+      emailUser,
+      placaUser,
+      selectedCar,
+      country,
+      city,
+      switchData,
+    } = data;
+
+    if (!switchData) {
+      selectedCar = "";
+    }
+    console.log("switch" + switchData);
 
     const formData = {
       fullName,
@@ -343,42 +355,57 @@ const FormCar = () => {
           />
 
           <ErrosForm errors={errors?.placaUser?.message} />
-
-          <FormControlLabel
-            value="start"
-            control={
-              <Switch checked={statusSwitch} onChange={handleChangeSwitch} />
-            }
-            label="I drive my own car"
-            labelPlacement="start"
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              margin: 0,
-              "& .MuiSwitch-switchBase": {
-                "&.Mui-checked": {
-                  color: "#fff",
-                  "& + .MuiSwitch-track": {
-                    opacity: 0.3,
-                    backgroundColor: "secondary.main",
+          <Controller
+            name="switchData"
+            control={control}
+            defaultValue={false}
+            render={({ field }) => (
+              <FormControlLabel
+                value="start"
+                control={
+                  <Switch
+                    {...field}
+                    checked={field.value}
+                    onChange={(e) => {
+                      field.onChange(e.target.checked);
+                      handleChangeSwitch(); 
+                    }}
+                  />
+                }
+                label="I drive my own car"
+                labelPlacement="start"
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  margin: 0,
+                  "& .MuiSwitch-switchBase": {
+                    "&.Mui-checked": {
+                      color: "#fff",
+                      "& + .MuiSwitch-track": {
+                        opacity: 0.3,
+                        backgroundColor: "secondary.main",
+                      },
+                    },
                   },
-                },
-              },
-              "& .MuiSwitch-switchBase.Mui-checked": {
-                color: "secondary.main",
-              },
-              "& .MuiFormControlLabel-label": {
-                color: "white",
-              },
-            }}
+                  "& .MuiSwitch-switchBase.Mui-checked": {
+                    color: "secondary.main",
+                  },
+                  "& .MuiFormControlLabel-label": {
+                    color: "white",
+                  },
+                }}
+              />
+            )}
           />
 
           {statusSwitch && (
             <FormControl>
-              <FormLabel id="demo-radio-buttons-group-label">
-                
-              </FormLabel>
-              <Typography variant='h6' sx={{color: 'secondary.main', fontWeight: "bold"}}>Select your car type</Typography>
+              <Typography
+                variant="h6"
+                sx={{ color: "secondary.main", fontWeight: "bold" }}
+              >
+                Select your car type
+              </Typography>
               <section className={styles.radioContainer}>
                 <RadioForm
                   label="Sedan"

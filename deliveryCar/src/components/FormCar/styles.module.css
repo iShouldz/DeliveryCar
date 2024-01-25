@@ -1,6 +1,8 @@
 .radioContainer{
   display: flex;
   align-items: flex-start;
+  width: fit-content;
+  margin-top: 16px;
   gap: 10px;
 }
 
