@@ -261,6 +261,7 @@ const FormCar = () => {
               options={Object.keys(jsonCountry)}
               renderInput={(params) => (
                 <TextField
+                id="country-field"
                   {...params}
                   name="country"
                   {...register("country")}
@@ -364,6 +365,7 @@ const FormCar = () => {
               options={city}
               renderInput={(params) => (
                 <TextField
+                id="city-field"
                   {...params}
                   name="city"
                   {...register("city")}
@@ -526,6 +528,7 @@ const FormCar = () => {
                 value="start"
                 control={
                   <Switch
+                  id="switch-field"
                     {...field}
                     checked={field.value}
                     onChange={(e) => {

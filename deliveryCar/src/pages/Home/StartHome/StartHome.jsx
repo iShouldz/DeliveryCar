@@ -63,8 +63,9 @@ const StartHome = () => {
       </figure>
 
       <section className={styles.simpleFormContainer}>
-        <article>
+        <article> 
           <Typography
+            aria-label="Need a ride?"
             variant="h5"
             sx={{ textTransform: "uppercase", color: "primary.light" }}
           >

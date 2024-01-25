@@ -33,7 +33,7 @@ const CardComponent = ({ img, alt, title, description }) => {
       </CardContent>
 
       <CardActions sx={{ justifyContent: "flex-end" }}>
-        <Button sx={{ color: "secondary.main" }} onClick={handleSearch}>Learn more</Button>
+        <Button sx={{ color: "secondary.main" }}  aria-label={`Learn more about ${title} car`} onClick={handleSearch}>Learn more</Button>
       </CardActions>
     </Card>
   );

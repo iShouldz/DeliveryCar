@@ -3,8 +3,8 @@ import carForm from '../../assets/form/CarFormImage.svg'
 
 const FormHeader = () => {
   return (
-    <section className={styles.headerForm}>
-      <img src={carForm} />
+    <section className={styles.headerForm} id="form">
+      <img src={carForm} alt="Car of form" />
       <article id={styles.headerContent}>
         <h2>Drive with MyRide</h2>
         <p>
