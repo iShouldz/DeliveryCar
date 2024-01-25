@@ -3,10 +3,11 @@ import { Typography } from "@mui/material";
 import ButtonCar from "../UI/ButtonCar/ButtonCar";
 
 import check from "../../assets/check.png";
-import car from "../../assets/form/CarFormImage.svg";
+import car from "../../assets/sucess.png";
 import TextFieldDisplay from "../UI/TextFieldDisplay/TextFieldDisplay";
 import { useDispatch, useSelector } from "react-redux";
 import { carActions } from "../../store/cars/carSlice";
+import { Container } from "@mui/system";
 
 const SucessScreen = () => {
   const fetchItem = useSelector((state) => state.cars.item);
@@ -41,19 +42,20 @@ const SucessScreen = () => {
 
   return (
     <section className={styles.sucessContainer}>
-      <article id={styles.title}>
-        <img src={check} />
-        <Typography
-          variant="h3"
-          sx={{ color: "primary.light", marginBottom: "20px" }}
-        >
-          Welcome, {lastElement.fullName}
-        </Typography>
-      </article>
+      <div className={styles.infoDisplay}>
+        <article id={styles.title}>
+          <img src={check} />
+          <Typography variant="h3" sx={{ color: "primary.light" }}>
+            Welcome, {lastElement.fullName.split(" ")[0]}
+          </Typography>
+        </article>
 
-      <Typography sx={{ marginBottom: "20px" }}>
-        That's data your send to us!{" "}
-      </Typography>
+        <Typography sx={{ margin: "20px" }}>
+          That's data your send to us!{" "}
+        </Typography>
+
+        <img src={car} id={styles.img} />
+      </div>
 
       <section className={styles.userInfoContainer}>
         <TextFieldDisplay value={lastElement.fullName} label="Full Name" />
@@ -63,14 +65,18 @@ const SucessScreen = () => {
         {lastElement.selectedCar !== "" && (
           <TextFieldDisplay value={lastElement.selectedCar} label="My Car" />
         )}
-
-        <Typography>
-          You'll so many info about process in your email:{" "}
-          <span style={{ color: "orange" }}>{lastElement.emailUser}</span>
-        </Typography>
       </section>
 
-      <img src={car} id={styles.img} />
+      <div id={styles.email}>
+        <Typography>
+          You'll so many info about process in your email:{" "}
+        </Typography>
+
+        <Typography sx={{ color: "orange" }}>
+          {lastElement.emailUser}
+        </Typography>
+      </div>
+
       <ButtonCar
         color="primary.light"
         onClick={handleSubmitNewCar}
