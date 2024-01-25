@@ -50,10 +50,11 @@ const StartHome = () => {
   }, []);
 
   const handleMaps = () => {
-    const url = `https://www.google.com.br/maps/dir/${latitude.latitude},${latitude.longitude}/${destinationData}/`;
-
-    window.location.href = url;
+    const url = `https://www.google.com.br/maps/dir/${currentLocation}/${destinationData}/`;
+  
+    window.open(url, '_blank');
   };
+  
 
   return (
     <section className={styles.startContainer}>

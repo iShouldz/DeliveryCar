@@ -204,6 +204,9 @@ const FormCar = () => {
                   },
                   "&.MuiInputLabel-shrink": {
                     color: "white",
+                    "&.Mui-focused": {
+                      color: "#FBA403",
+                    },
                     "&.Mui-error": {
                       color: "red",
                     },
@@ -240,6 +243,9 @@ const FormCar = () => {
                   },
                   "&.MuiInputLabel-shrink": {
                     color: "white",
+                    "&.Mui-focused": {
+                      color: "#FBA403",
+                    },
                     "&.Mui-error": {
                       color: "red",
                     },
@@ -274,6 +280,12 @@ const FormCar = () => {
                     },
                     "& input": {
                       color: "white",
+                      "& .MuiOutlinedInput-notchedOutline": {
+                        borderColor: errors?.country?.message
+                          ? "red"
+                          : "blue !important",
+                        color: "white",
+                      },
                     },
                     "& label": {
                       color: "secondary.labelColor",
@@ -282,8 +294,11 @@ const FormCar = () => {
                       },
                       "&.MuiInputLabel-shrink": {
                         color: "white",
+                        "&.Mui-focused": {
+                          color: "#FBA403",
+                        },
                         "&.Mui-error": {
-                          color: "red !important",
+                          color: "red",
                         },
                       },
                     },
@@ -385,8 +400,11 @@ const FormCar = () => {
                       },
                       "&.MuiInputLabel-shrink": {
                         color: "white",
+                        "&.Mui-focused": {
+                          color: "#FBA403",
+                        },
                         "&.Mui-error": {
-                          color: "red !important",
+                          color: "red",
                         },
                       },
                     },
@@ -418,6 +436,9 @@ const FormCar = () => {
                   },
                   "&.MuiInputLabel-shrink": {
                     color: "white",
+                    "&.Mui-focused": {
+                      color: "#FBA403",
+                    },
                     "&.Mui-error": {
                       color: "red",
                     },
@@ -483,6 +504,9 @@ const FormCar = () => {
                   },
                   "&.MuiInputLabel-shrink": {
                     color: "white",
+                    "&.Mui-focused": {
+                      color: "#FBA403",
+                    },
                     "&.Mui-error": {
                       color: "red",
                     },

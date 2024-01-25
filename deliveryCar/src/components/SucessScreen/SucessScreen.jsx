@@ -79,7 +79,7 @@ const SucessScreen = () => {
         <TextFieldDisplay value={lastElement.country} label="Country" />
         <TextFieldDisplay value={lastElement.city} label="City" />
         <TextFieldDisplay
-          value={lastElement.placaUser.toUpperCase()}
+          value={lastElement.placaUser}
           style={{ textTransform: "uppercase" }}
           label="Placa"
         />
