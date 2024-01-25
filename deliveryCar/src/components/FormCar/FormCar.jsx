@@ -204,6 +204,9 @@ const FormCar = () => {
                   },
                   "&.MuiInputLabel-shrink": {
                     color: "white",
+                    "&.Mui-error": {
+                      color: "red", 
+                    },
                   },
                 },
               }}
@@ -237,6 +240,9 @@ const FormCar = () => {
                   },
                   "&.MuiInputLabel-shrink": {
                     color: "white",
+                    "&.Mui-error": {
+                      color: "red", 
+                    },
                   },
                 },
               }}
@@ -274,6 +280,9 @@ const FormCar = () => {
                       },
                       "&.MuiInputLabel-shrink": {
                         color: "white",
+                        "&.Mui-error": {
+                          color: "red", 
+                        },
                       },
                     },
                   }}
@@ -338,6 +347,9 @@ const FormCar = () => {
                   },
                   "&.MuiInputLabel-shrink": {
                     color: "white",
+                    "&.Mui-error": {
+                      color: "red", 
+                    },
                   },
                 },
                 "&.MuiInputBase-root-MuiOutlinedInput-root.Mui-disabled": {
@@ -397,6 +409,9 @@ const FormCar = () => {
                   },
                   "&.MuiInputLabel-shrink": {
                     color: "white",
+                    "&.Mui-error": {
+                      color: "red", 
+                    },
                   },
                 },
               }}
