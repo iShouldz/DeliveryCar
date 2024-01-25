@@ -4,9 +4,12 @@ import { TextField } from "@mui/material";
 const TextFieldDisplay = ({ value, label }) => {
   return (
     <TextField
-      readOnly={true}
       value={value}
       label={label}
+      InputProps={{
+        readOnly: true,
+      }}
+      variant="filled"
       sx={{
         color: "white",
         "& input": {
@@ -25,7 +28,7 @@ const TextFieldDisplay = ({ value, label }) => {
           "& label": {
             color: "secondary.main",
           },
-        },
+        },backgroundColor: "#282828"
       }}
     />
   );
