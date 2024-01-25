@@ -45,7 +45,7 @@ const schema = yup
   .object({
     fullName: yup
       .string()
-      .matches(/^[a-zA-Z]+ [a-zA-Z]+$/, "Invalid name")
+      .matches(/^[a-zA-Z]+ [a-zA-Z]*/, "Invalid name")
       .required(),
     emailUser: yup
       .string()
@@ -263,7 +263,7 @@ const FormCar = () => {
                   sx={{
                     color: "white",
                     "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "white ",
+                      borderColor: errors?.country?.message ? "red" : "white !important",
                       color: "white",
                     },
                     "&:hover .MuiOutlinedInput-notchedOutline": {
@@ -281,44 +281,66 @@ const FormCar = () => {
                       "&.MuiInputLabel-shrink": {
                         color: "white",
                         "&.Mui-error": {
-                          color: "red",
+                          color: "red !important",
                         },
                       },
                     },
                   }}
+                  
                 />
               )}
               value={country}
               onChange={(event, newValue) => setCountry(newValue)}
-              // sx={{
-              //   color: "white",
-              //   "& .MuiOutlinedInput-notchedOutline": {
-              //     borderColor: "white !important",
-              //     color: "white",
-              //   },
-              //   "&:hover .MuiOutlinedInput-notchedOutline": {
-              //     borderColor: "orange !important",
-              //     color: "white !important",
-              //   },
-              //   "& input": {
-              //     color: "white",
-              //   },
-              //   "& label": {
-              //     color: "secondary.labelColor",
-              //     "&.Mui-focused": {
-              //       color: "white",
-              //     },
-              //     "&.MuiInputLabel-shrink": {
-              //       color: "white",
-              //       "&.Mui-focused": {
-              //         color: "white !important", 
-              //       },
-              //       "&.Mui-error": {
-              //         color: "red",
-              //       },
-              //     },
-              //   },
-              // }}
+              sx={{
+                color: "white",
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "white ",
+                  color: "white",
+                },
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#FBA403 !important",
+                  color: "white !important",
+                },
+                "& input": {
+                  color: "white",
+                },
+                "& label": {
+                  color: "secondary.labelColor",
+                  "&.Mui-focused": {
+                    color: "white",
+                  },
+                  "&.MuiInputLabel-shrink": {
+                    color: "white",
+                    "&.Mui-error": {
+                      color: "red",
+                    },
+                  },
+                },
+                "&.MuiInputBase-root-MuiOutlinedInput-root.Mui-disabled": {
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "blue !important",
+                  },
+                },
+                "&:disabled": {
+                  color: "white",
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "white !important",
+                    color: "white !important",
+                  },
+                  "&:hover .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "gray !important",
+                    color: "white !important",
+                  },
+                  "& input": {
+                    color: "white !important",
+                  },
+                  "& label": {
+                    color: "white !important",
+                    borderColor: "white !important",
+                  },
+
+                },
+              }}
             />
           </FormHelperStyled>
 
@@ -335,7 +357,7 @@ const FormCar = () => {
                   sx={{
                     color: "white",
                     "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "white ",
+                      borderColor: errors?.city?.message ? "red" : "white !important",
                       color: "white",
                     },
                     "&:hover .MuiOutlinedInput-notchedOutline": {
@@ -353,10 +375,9 @@ const FormCar = () => {
                       "&.MuiInputLabel-shrink": {
                         color: "white",
                         "&.Mui-error": {
-                          color: "red",
+                          color: "red !important",
                         },
                       },
-                    
                     },
                   }}
                 />
@@ -366,56 +387,56 @@ const FormCar = () => {
               getOptionLabel={(option) => option}
               disabled={country === null}
               color="primary.light"
-              // sx={{
-              //   color: "white",
-              //   "& .MuiOutlinedInput-notchedOutline": {
-              //     borderColor: "white ",
-              //     color: "white",
-              //   },
-              //   "&:hover .MuiOutlinedInput-notchedOutline": {
-              //     borderColor: "#FBA403 !important",
-              //     color: "white !important",
-              //   },
-              //   "& input": {
-              //     color: "white",
-              //   },
-              //   "& label": {
-              //     color: "secondary.labelColor",
-              //     "&.Mui-focused": {
-              //       color: "white",
-              //     },
-              //     "&.MuiInputLabel-shrink": {
-              //       color: "white",
-              //       "&.Mui-error": {
-              //         color: "red",
-              //       },
-              //     },
-              //   },
-              //   "&.MuiInputBase-root-MuiOutlinedInput-root.Mui-disabled": {
-              //     "& .MuiOutlinedInput-notchedOutline": {
-              //       borderColor: "blue !important",
-              //     },
-              //   },
-                // "&:disabled": {
-                //   color: "white",
-                //   "& .MuiOutlinedInput-notchedOutline": {
-                //     borderColor: "white !important",
-                //     color: "white !important",
-                //   },
-                //   "&:hover .MuiOutlinedInput-notchedOutline": {
-                //     borderColor: "gray !important",
-                //     color: "white !important",
-                //   },
-                //   "& input": {
-                //     color: "white !important",
-                //   },
-                //   "& label": {
-                //     color: "white !important",
-                //     borderColor: "white !important",
-                //   },
+              sx={{
+                color: "white",
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "white ",
+                  color: "white",
+                },
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#FBA403 !important",
+                  color: "white !important",
+                },
+                "& input": {
+                  color: "white",
+                },
+                "& label": {
+                  color: "secondary.labelColor",
+                  "&.Mui-focused": {
+                    color: "white",
+                  },
+                  "&.MuiInputLabel-shrink": {
+                    color: "white",
+                    "&.Mui-error": {
+                      color: "red",
+                    },
+                  },
+                },
+                "&.MuiInputBase-root-MuiOutlinedInput-root.Mui-disabled": {
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "blue !important",
+                  },
+                },
+                "&:disabled": {
+                  color: "white",
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "white !important",
+                    color: "white !important",
+                  },
+                  "&:hover .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "gray !important",
+                    color: "white !important",
+                  },
+                  "& input": {
+                    color: "white !important",
+                  },
+                  "& label": {
+                    color: "white !important",
+                    borderColor: "white !important",
+                  },
 
-                // },
-              // }}
+                },
+              }}
             />
           </FormHelperStyled>
 
