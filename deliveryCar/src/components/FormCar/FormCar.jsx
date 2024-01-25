@@ -40,7 +40,7 @@ import SemiRadio from "../UI/SemiRadio/SemiRadio";
 import LuxuryRadio from "../UI/LuxuryRadio/LuxuryRadio";
 import errorIcon from "../../assets/form/errorIcon.png";
 import FormHelperStyled from "../FormHelperStyled/FormHelperStyled";
-
+import {stylesFormSX, switchFormSX} from '../../utils/stylesSX'
 const schema = yup
   .object({
     fullName: yup
@@ -184,35 +184,9 @@ const FormCar = () => {
               {...register("fullName")}
               error={errors?.fullName?.message !== undefined}
               color="secondary"
-              sx={{
-                color: "white",
-                "& .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "white",
-                  color: "white",
-                },
-                "&:hover .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "#FBA403 !important",
-                  color: "white !important",
-                },
-                "& input": {
-                  color: "white",
-                },
-                "& label": {
-                  color: "secondary.labelColor",
-                  "&.Mui-focused": {
-                    color: "white",
-                  },
-                  "&.MuiInputLabel-shrink": {
-                    color: "white",
-                    "&.Mui-focused": {
-                      color: "#FBA403",
-                    },
-                    "&.Mui-error": {
-                      color: "red",
-                    },
-                  },
-                },
-              }}
+              sx={
+                stylesFormSX
+              }
             />
           </FormHelperStyled>
 
@@ -223,35 +197,7 @@ const FormCar = () => {
               name="emailUser"
               {...register("emailUser")}
               color="secondary"
-              sx={{
-                color: "white",
-                "& .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "white ",
-                  color: "white",
-                },
-                "&:hover .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "#FBA403 !important",
-                  color: "white !important",
-                },
-                "& input": {
-                  color: "white",
-                },
-                "& label": {
-                  color: "secondary.labelColor",
-                  "&.Mui-focused": {
-                    color: "white",
-                  },
-                  "&.MuiInputLabel-shrink": {
-                    color: "white",
-                    "&.Mui-focused": {
-                      color: "#FBA403",
-                    },
-                    "&.Mui-error": {
-                      color: "red",
-                    },
-                  },
-                },
-              }}
+              sx={stylesFormSX}
               error={errors?.emailUser?.message !== undefined}
             />
           </FormHelperStyled>
@@ -486,35 +432,7 @@ const FormCar = () => {
               {...register("placaUser")}
               error={errors?.placaUser?.message !== undefined}
               color="secondary"
-              sx={{
-                color: "white",
-                "& .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "white ",
-                  color: "white",
-                },
-                "&:hover .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "#FBA403 !important",
-                  color: "white !important",
-                },
-                "& input": {
-                  color: "white",
-                },
-                "& label": {
-                  color: "secondary.labelColor",
-                  "&.Mui-focused": {
-                    color: "white",
-                  },
-                  "&.MuiInputLabel-shrink": {
-                    color: "white",
-                    "&.Mui-focused": {
-                      color: "#FBA403",
-                    },
-                    "&.Mui-error": {
-                      color: "red",
-                    },
-                  },
-                },
-              }}
+              sx={stylesFormSX}
             />
           </FormHelperStyled>
 
@@ -539,26 +457,7 @@ const FormCar = () => {
                 }
                 label="I drive my own car"
                 labelPlacement="start"
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  margin: 0,
-                  "& .MuiSwitch-switchBase": {
-                    "&.Mui-checked": {
-                      color: "#fff",
-                      "& + .MuiSwitch-track": {
-                        opacity: 0.3,
-                        backgroundColor: "secondary.main",
-                      },
-                    },
-                  },
-                  "& .MuiSwitch-switchBase.Mui-checked": {
-                    color: "secondary.main",
-                  },
-                  "& .MuiFormControlLabel-label": {
-                    color: "white",
-                  },
-                }}
+                sx={switchFormSX}
               />
             )}
           />
