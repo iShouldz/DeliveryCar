@@ -112,6 +112,10 @@ const StartHome = () => {
               width: "544px",
               height: "56px",
               backgroundColor: "secondary.main",
+              "&:hover": {
+                backgroundColor: "#EA9801", 
+              },
+              
             }}
             startIcon={
               <svg
