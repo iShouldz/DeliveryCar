@@ -1,21 +1,21 @@
 .headerForm {
-    display: flex;
-    gap: 18px;
-  }
-  
-  #headerContent > p,
-  h2 {
-    margin: 0;
-  }
-  
-  #headerContent > h2 {
-    color: #FBA403
-  }
-  
-  #headerContent {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: column;
-  }
-  
+  display: flex;
+  gap: 18px;
+  padding-left: 30px;
+}
+
+#headerContent > p,
+h2 {
+  margin: 0;
+}
+
+#headerContent > h2 {
+  color: #fba403;
+}
+
+#headerContent {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+}
