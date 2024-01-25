@@ -1,4 +1,4 @@
-.radioContainer{
+.radioContainer {
   display: flex;
   align-items: flex-start;
   width: fit-content;
@@ -6,19 +6,37 @@
   gap: 10px;
 }
 
-.formContainer{
+.formContainer {
   width: 100%;
   height: fit-content;
 }
 
-.groupContainer{
+.groupContainer {
   padding: 30px;
 
   gap: 24px;
   flex-shrink: 0;
 }
 
-#buttonForm{
+#buttonForm {
   width: 200px;
   height: 56px;
+}
+
+.errorDiv {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.errorDiv > p {
+  display: flex;
+  align-items: center;
+}
+
+.errorDiv > p > img {
+  margin-right: 8px;
+  margin-bottom: 3px;
+  width: 16px;
+  height: 16px;
 }

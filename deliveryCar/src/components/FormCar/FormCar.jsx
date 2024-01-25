@@ -9,6 +9,7 @@ import {
   FormControl,
   FormControlLabel,
   FormGroup,
+  FormHelperText,
   FormLabel,
   InputLabel,
   Modal,
@@ -37,12 +38,14 @@ import SedanRadio from "../UI/SedanRadio/SedanRadio";
 import SuvRadio from "../UI/SuvRadio/SuvRadio";
 import SemiRadio from "../UI/SemiRadio/SemiRadio";
 import LuxuryRadio from "../UI/LuxuryRadio/LuxuryRadio";
+import errorIcon from "../../assets/form/errorIcon.png";
+import FormHelperStyled from "../FormHelperStyled/FormHelperStyled";
 
 const schema = yup
   .object({
     fullName: yup
       .string()
-      .matches(/^[a-zA-Z]+ [a-zA-Z]+$/, "Required a full name")
+      .matches(/^[a-zA-Z]+ [a-zA-Z]+$/, "Invalid name")
       .required(),
     emailUser: yup
       .string()
@@ -57,10 +60,14 @@ const schema = yup
       .required(),
     country: yup.string().required(),
     city: yup.string().required(),
-    switchData: yup.boolean().transform((originalValue) => {
-      return originalValue ? true : false;
+    switchData: yup
+      .boolean()
+      .transform((originalValue) => originalValue || false),
+    selectedCar: yup.string().when("switchData", {
+      is: true,
+      then: (schema) => schema.required("Select a vehicle type"),
+      otherwise: (schema) => schema.notRequired(),
     }),
-    selectedCar: yup.string(),
   })
   .required();
 
@@ -148,6 +155,8 @@ const FormCar = () => {
     window.location.reload();
   };
 
+  console.log(statusSwitch);
+
   const handleChangeCountry = (event) => {
     setCountry(event.target.value);
   };
@@ -167,224 +176,234 @@ const FormCar = () => {
         className={styles.formContainer}
       >
         <FormGroup className={styles.groupContainer}>
-          <TextField
-            id="nameUser"
-            label="Full Name"
-            name="fullName"
-            {...register("fullName")}
-            error={errors?.fullName?.message !== undefined}
-            color="secondary"
-            sx={{
-              color: "white",
-              "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "white !important",
-                color: "white",
-              },
-              "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#FBA403 !important",
-                color: "white !important",
-              },
-              "& input": {
-                color: "white",
-              },
-              "& label": {
-                color: "secondary.labelColor",
-                "&.Mui-focused": {
-                  color: "white",
-                },
-                "&.MuiInputLabel-shrink": {
-                  color: "white",
-                },
-              },
-            }}
-          />
-
-          <ErrosForm errors={errors?.fullName?.message} />
-
-          <TextField
-            id="emailUser"
-            label="Email Address"
-            name="emailUser"
-            {...register("emailUser")}
-            color="secondary"
-            sx={{
-              color: "white",
-              "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "white !important",
-                color: "white",
-              },
-              "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#FBA403 !important",
-                color: "white !important",
-              },
-              "& input": {
-                color: "white",
-              },
-              "& label": {
-                color: "secondary.labelColor",
-                "&.Mui-focused": {
-                  color: "white",
-                },
-                "&.MuiInputLabel-shrink": {
-                  color: "white",
-                },
-              },
-            }}
-            error={errors?.emailUser?.message !== undefined}
-          />
-
-          <ErrosForm errors={errors?.emailUser?.message} />
-
-          <Autocomplete
-            options={Object.keys(jsonCountry)}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                name="country"
-                {...register("country")}
-                label="Contry"
-                error={errors?.country?.message !== undefined}
-                sx={{
-                  color: "white",
-                  "& .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "white !important",
-                    color: "white",
-                  },
-                  "&:hover .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "#FBA403 !important",
-                    color: "white !important",
-                  },
-                  "& input": {
-                    color: "white",
-                  },
-                  "& label": {
-                    color: "secondary.labelColor",
-                    "&.Mui-focused": {
-                      color: "white",
-                    },
-                    "&.MuiInputLabel-shrink": {
-                      color: "white",
-                    },
-                  },
-                }}
-              />
-            )}
-            value={country}
-            onChange={(event, newValue) => setCountry(newValue)}
-            sx={{
-              color: "white",
-              "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "white",
-                color: "white",
-              },
-              "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#FBA403 !important",
-                color: "white !important",
-              },
-              "& input": {
-                color: "white",
-              },
-              "& label": {
-                color: "secondary.labelColor",
-              },
-            }}
-          />
-
-          <ErrosForm errors={errors?.country?.message} />
-
-          <Autocomplete
-            options={city}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                name="city"
-                {...register("city")}
-                label="City"
-                error={errors?.city?.message !== undefined}
-              />
-            )}
-            value={citySelected}
-            onChange={(event, newValue) => setCitySelected(newValue)}
-            getOptionLabel={(option) => option}
-            disabled={country === null}
-            color="primary.light"
-            sx={{
-              color: "white",
-              "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "white !important",
-                color: "white",
-              },
-              "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#FBA403 !important",
-                color: "white !important",
-              },
-              "& input": {
-                color: "white",
-              },
-              "& label": {
-                color: "secondary.labelColor",
-                "&.Mui-focused": {
-                  color: "white",
-                },
-                "&.MuiInputLabel-shrink": {
-                  color: "white",
-                },
-              },
-              "&:disabled": {
+          <FormHelperStyled error={errors?.fullName?.message}>
+            <TextField
+              id="nameUser"
+              label="Full Name"
+              name="fullName"
+              {...register("fullName")}
+              error={errors?.fullName?.message !== undefined}
+              color="secondary"
+              sx={{
                 color: "white",
                 "& .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "white !important",
-                  color: "white !important",
+                  borderColor: "white",
+                  color: "white",
                 },
                 "&:hover .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "gray !important",
+                  borderColor: "#FBA403 !important",
                   color: "white !important",
                 },
                 "& input": {
-                  color: "white !important",
+                  color: "white",
                 },
                 "& label": {
+                  color: "secondary.labelColor",
+                  "&.Mui-focused": {
+                    color: "white",
+                  },
+                  "&.MuiInputLabel-shrink": {
+                    color: "white",
+                  },
+                },
+              }}
+            />
+          </FormHelperStyled>
+
+          <FormHelperStyled error={errors?.emailUser?.message}>
+            <TextField
+              id="emailUser"
+              label="Email Address"
+              name="emailUser"
+              {...register("emailUser")}
+              color="secondary"
+              sx={{
+                color: "white",
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "white ",
+                  color: "white",
+                },
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#FBA403 !important",
                   color: "white !important",
                 },
-              },
-            }}
-          />
-
-          <ErrosForm errors={errors?.city?.message} />
-
-          <TextField
-            id="placaUser"
-            label="Referral Code"
-            name="placaUser"
-            {...register("placaUser")}
-            error={errors?.placaUser?.message !== undefined}
-            color="secondary"
-            sx={{
-              color: "white",
-              "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "white !important",
-                color: "white",
-              },
-              "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#FBA403 !important",
-                color: "white !important",
-              },
-              "& input": {
-                color: "white",
-              },
-              "& label": {
-                color: "secondary.labelColor",
-                "&.Mui-focused": {
+                "& input": {
                   color: "white",
                 },
-                "&.MuiInputLabel-shrink": {
+                "& label": {
+                  color: "secondary.labelColor",
+                  "&.Mui-focused": {
+                    color: "white",
+                  },
+                  "&.MuiInputLabel-shrink": {
+                    color: "white",
+                  },
+                },
+              }}
+              error={errors?.emailUser?.message !== undefined}
+            />
+          </FormHelperStyled>
+
+          <FormHelperStyled error={errors?.country?.message}>
+            <Autocomplete
+              options={Object.keys(jsonCountry)}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  name="country"
+                  {...register("country")}
+                  label="Contry"
+                  error={errors?.country?.message !== undefined}
+                  sx={{
+                    color: "white",
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "white ",
+                      color: "white",
+                    },
+                    "&:hover .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "#FBA403 !important",
+                      color: "white !important",
+                    },
+                    "& input": {
+                      color: "white",
+                    },
+                    "& label": {
+                      color: "secondary.labelColor",
+                      "&.Mui-focused": {
+                        color: "white",
+                      },
+                      "&.MuiInputLabel-shrink": {
+                        color: "white",
+                      },
+                    },
+                  }}
+                />
+              )}
+              value={country}
+              onChange={(event, newValue) => setCountry(newValue)}
+              sx={{
+                color: "white",
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "white",
                   color: "white",
                 },
-              },
-            }}
-          />
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#FBA403 !important",
+                  color: "white !important",
+                },
+                "& input": {
+                  color: "white",
+                },
+                "& label": {
+                  color: "secondary.labelColor",
+                },
+              }}
+            />
+          </FormHelperStyled>
 
-          <ErrosForm errors={errors?.placaUser?.message} />
+          <FormHelperStyled error={errors?.city?.message}>
+            <Autocomplete
+              options={city}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  name="city"
+                  {...register("city")}
+                  label="City"
+                  error={errors?.city?.message !== undefined}
+                />
+              )}
+              value={citySelected}
+              onChange={(event, newValue) => setCitySelected(newValue)}
+              getOptionLabel={(option) => option}
+              disabled={country === null}
+              color="primary.light"
+              sx={{
+                color: "white",
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "white ",
+                  color: "white",
+                },
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#FBA403 !important",
+                  color: "white !important",
+                },
+                "& input": {
+                  color: "white",
+                },
+                "& label": {
+                  color: "secondary.labelColor",
+                  "&.Mui-focused": {
+                    color: "white",
+                  },
+                  "&.MuiInputLabel-shrink": {
+                    color: "white",
+                  },
+                },
+                "&.MuiInputBase-root-MuiOutlinedInput-root.Mui-disabled": {
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "blue !important",
+                  },
+                },
+                // "&:disabled": {
+                //   color: "white",
+                //   "& .MuiOutlinedInput-notchedOutline": {
+                //     borderColor: "white !important",
+                //     color: "white !important",
+                //   },
+                //   "&:hover .MuiOutlinedInput-notchedOutline": {
+                //     borderColor: "gray !important",
+                //     color: "white !important",
+                //   },
+                //   "& input": {
+                //     color: "white !important",
+                //   },
+                //   "& label": {
+                //     color: "white !important",
+                //     borderColor: "white !important",
+                //   },
+
+                // },
+              }}
+            />
+          </FormHelperStyled>
+
+          <FormHelperStyled error={errors?.placaUser?.message}>
+            <TextField
+              id="placaUser"
+              label="Referral Code"
+              name="placaUser"
+              {...register("placaUser")}
+              
+              error={errors?.placaUser?.message !== undefined}
+              color="secondary"
+              sx={{
+                color: "white",
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "white ",
+                  color: "white",
+                },
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#FBA403 !important",
+                  color: "white !important",
+                },
+                "& input": {
+                  color: "white",
+                },
+                "& label": {
+                  color: "secondary.labelColor",
+                  "&.Mui-focused": {
+                    color: "white",
+                  },
+                  "&.MuiInputLabel-shrink": {
+                    color: "white",
+                  },
+                },
+              }}
+            />
+          </FormHelperStyled>
+
+          {/* <ErrosForm errors={errors?.placaUser?.message} /> */}
           <Controller
             name="switchData"
             control={control}
@@ -493,7 +512,7 @@ const FormCar = () => {
                 </RadioForm>
               </section>
 
-              <ErrosForm errors={errors?.selectedCar?.message} />
+              <ErrosForm errors={errors?.selectedCar?.message}/>
             </FormControl>
           )}
           <ButtonCar
