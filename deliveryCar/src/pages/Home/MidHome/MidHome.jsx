@@ -33,6 +33,7 @@ const MidHome = () => {
         <CardComponent
           img={car1}
           title={"Basic"}
+          alt="A basic car"
           description={
             "The best balance of price and comfort. You will not go wrong with our basic rides."
           }
@@ -41,6 +42,7 @@ const MidHome = () => {
         <CardComponent
           img={car2}
           title={"Comfort"}
+          alt="A comfort car"
           description={
             "If comfort is your priority, this is the ride for you. It’s spacious and packed with features."
           }
@@ -49,6 +51,7 @@ const MidHome = () => {
         <CardComponent
           img={car3}
           title={"Business"}
+          alt="A business car"
           description={
             "Do you want to travel around the city in style? Make sure to select or business class rides."
           }
@@ -57,6 +60,7 @@ const MidHome = () => {
         <CardComponent
           img={car4}
           title={"Deluxe"}
+          alt="A Deluxe car"
           description={
             "The best ride for luxury and comfort. No compromises here. You’ll surely get what you pay for."
           }

@@ -74,7 +74,7 @@ const Loading = () => {
         We are happy that you are joining us 😁{" "}
       </Typography>
 
-      <img src={carLoading} />
+      <img src={carLoading} alt="A image loading your data" />
 
       <CircularProgress color="secondary" size={50} />
 

@@ -17,7 +17,7 @@ const ModalTemplate = ({ open, title, description, img, actionButton }) => {
           {title}
         </Typography>
         <Typography id="modal-modal-description">{description}</Typography>
-        <img src={img} />
+        <img src={img} alt="Problem image error"/>
 
         <ButtonCar color="white" onClick={actionButton}>
           Reload page

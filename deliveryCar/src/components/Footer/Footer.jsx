@@ -9,13 +9,13 @@ const Footer = () => {
   return (
     <footer className={styles.allContainer}>
       <section className={styles.infoContainer}>
-        <img src={logo} />
+        <img src={logo} alt="logo"/>
         <address>MyRide Inc., 2nd Floor, New York, NY 10016</address>
 
         <div id={styles.socialContainer}>
-          <img src={facebook} />
-          <img src={instagram} />
-          <img src={twitter} />
+          <img src={facebook} alt="Facebook logo"/>
+          <img src={instagram} alt="Instagram logo"/>
+          <img src={twitter} alt="Twitter logo"/>
         </div>
       </section>
 

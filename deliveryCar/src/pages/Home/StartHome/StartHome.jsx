@@ -59,7 +59,7 @@ const StartHome = () => {
   return (
     <section className={styles.startContainer}>
       <figure>
-        <img src={startCar} />
+        <img src={startCar} alt="A yellow car working with my ride company" />
       </figure>
 
       <section className={styles.simpleFormContainer}>

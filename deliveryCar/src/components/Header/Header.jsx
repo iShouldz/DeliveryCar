@@ -17,7 +17,6 @@ import styles from './styles.module.css'
 const Header = () => {
   const navigate = useNavigate();
   const theme = useTheme();
-
   const [selectedUrl, setSelecteUrl] = useState("");
 
   const handleGoTo = (url) => {
@@ -36,7 +35,7 @@ const Header = () => {
             aria-controls="headerMenu"
             aria-haspopup="true"
           >
-            <img src={logo} alt="Logo da empresa" />
+            <img src={logo} alt="Company logo" />
           </IconButton>
 
           <Tabs id="headerMenu" sx={{ display: "flex" }}>
@@ -96,16 +95,16 @@ const Header = () => {
               aria-controls="headerMenu"
               aria-haspopup="true"
             >
-              <img src={notification} alt="Logo da empresa" />
+              <img src={notification} alt="Notification icon" />
             </IconButton>
             <hr />
-
+            
             <IconButton
               size="large"
               aria-controls="headerMenu"
               aria-haspopup="true"
             >
-              <img src={userLogo} alt="Logo da empresa" />
+              <img src={userLogo} alt="User icon" />
             </IconButton>
           </Box>
         </Toolbar>

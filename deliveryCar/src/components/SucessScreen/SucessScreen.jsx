@@ -62,7 +62,7 @@ const SucessScreen = () => {
     <section className={styles.sucessContainer}>
       <div className={styles.infoDisplay}>
         <article id={styles.title}>
-          <img src={check} />
+          <img src={check} alt="Check sucess icon"/>
           <Typography variant="h3" sx={{ color: "primary.light" }}>
             Welcome, {lastElement.fullName.split(" ")[0]}
           </Typography>
@@ -72,7 +72,7 @@ const SucessScreen = () => {
           Thats data your send to us!{" "}
         </Typography>
 
-        <img src={car} id={styles.img} />
+        <img src={car} id={styles.img} alt="A sucess image car"/>
       </div>
       <section className={styles.userInfoContainer}>
         <TextFieldDisplay value={lastElement.fullName} label="Full Name" />

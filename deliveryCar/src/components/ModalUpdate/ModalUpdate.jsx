@@ -77,7 +77,7 @@ const ModalUpdate = ({ open, title, description, id, oldData, onClose }) => {
 
         <Typography id="modal-modal-description">{description}</Typography>
 
-        <img src={updateCar} />
+        <img src={updateCar} alt="A image to update user data" />
 
         <form onSubmit={handleSubmit(handleUpdate)}>
           <section
