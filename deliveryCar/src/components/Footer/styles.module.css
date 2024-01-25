@@ -13,7 +13,8 @@
 .allContainer {
   display: flex;
   padding: 40px 80px 40px 80px;
-  justify-content: space-between;
+  
+  /* justify-content: space-between; */
   margin-top: 125px;
 }
 
@@ -31,6 +32,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-right: 200px;
 }
 
 .infoContainer > img {
