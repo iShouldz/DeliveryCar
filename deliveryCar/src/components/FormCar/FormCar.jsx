@@ -205,7 +205,7 @@ const FormCar = () => {
                   "&.MuiInputLabel-shrink": {
                     color: "white",
                     "&.Mui-error": {
-                      color: "red", 
+                      color: "red",
                     },
                   },
                 },
@@ -241,7 +241,7 @@ const FormCar = () => {
                   "&.MuiInputLabel-shrink": {
                     color: "white",
                     "&.Mui-error": {
-                      color: "red", 
+                      color: "red",
                     },
                   },
                 },
@@ -281,7 +281,7 @@ const FormCar = () => {
                       "&.MuiInputLabel-shrink": {
                         color: "white",
                         "&.Mui-error": {
-                          color: "red", 
+                          color: "red",
                         },
                       },
                     },
@@ -293,11 +293,11 @@ const FormCar = () => {
               sx={{
                 color: "white",
                 "& .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "white",
+                  borderColor: "white !important",
                   color: "white",
                 },
                 "&:hover .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "#FBA403 !important",
+                  borderColor: "orange !important",
                   color: "white !important",
                 },
                 "& input": {
@@ -305,6 +305,18 @@ const FormCar = () => {
                 },
                 "& label": {
                   color: "secondary.labelColor",
+                  "&.Mui-focused": {
+                    color: "white",
+                  },
+                  "&.MuiInputLabel-shrink": {
+                    color: "white",
+                    "&.Mui-focused": {
+                      color: "white !important", 
+                    },
+                    "&.Mui-error": {
+                      color: "red",
+                    },
+                  },
                 },
               }}
             />
@@ -320,6 +332,35 @@ const FormCar = () => {
                   {...register("city")}
                   label="City"
                   error={errors?.city?.message !== undefined}
+                  sx={{
+                    color: "white",
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "white !important",
+                      color: "white",
+                    },
+                    "&:hover .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "orange !important",
+                      color: "white !important",
+                    },
+                    "& input": {
+                      color: "white",
+                    },
+                    "& label": {
+                      color: "secondary.labelColor",
+                      "&.Mui-focused": {
+                        color: "white",
+                      },
+                      "&.MuiInputLabel-shrink": {
+                        color: "white",
+                        "&.Mui-focused": {
+                          color: "white !important", 
+                        },
+                        "&.Mui-error": {
+                          color: "red",
+                        },
+                      },
+                    },
+                  }}
                 />
               )}
               value={citySelected}
@@ -348,7 +389,7 @@ const FormCar = () => {
                   "&.MuiInputLabel-shrink": {
                     color: "white",
                     "&.Mui-error": {
-                      color: "red", 
+                      color: "red",
                     },
                   },
                 },
@@ -386,7 +427,6 @@ const FormCar = () => {
               label="Referral Code"
               name="placaUser"
               {...register("placaUser")}
-              
               error={errors?.placaUser?.message !== undefined}
               color="secondary"
               sx={{
@@ -410,7 +450,7 @@ const FormCar = () => {
                   "&.MuiInputLabel-shrink": {
                     color: "white",
                     "&.Mui-error": {
-                      color: "red", 
+                      color: "red",
                     },
                   },
                 },
@@ -527,7 +567,7 @@ const FormCar = () => {
                 </RadioForm>
               </section>
 
-              <ErrosForm errors={errors?.selectedCar?.message}/>
+              <ErrosForm errors={errors?.selectedCar?.message} />
             </FormControl>
           )}
           <ButtonCar
