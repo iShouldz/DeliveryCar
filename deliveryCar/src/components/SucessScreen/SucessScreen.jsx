@@ -43,19 +43,27 @@ const SucessScreen = () => {
     <section className={styles.sucessContainer}>
       <article id={styles.title}>
         <img src={check} />
-        <Typography variant="h3" sx={{ color: "primary.light", marginBottom: '20px'}}>
+        <Typography
+          variant="h3"
+          sx={{ color: "primary.light", marginBottom: "20px" }}
+        >
           Welcome, {lastElement.fullName}
         </Typography>
       </article>
 
-      <Typography sx={{marginBottom: '20px'}}>That's data your send to us! </Typography>
+      <Typography sx={{ marginBottom: "20px" }}>
+        That's data your send to us!{" "}
+      </Typography>
 
       <section className={styles.userInfoContainer}>
         <TextFieldDisplay value={lastElement.fullName} label="Full Name" />
         <TextFieldDisplay value={lastElement.country} label="Country" />
         <TextFieldDisplay value={lastElement.city} label="City" />
         <TextFieldDisplay value={lastElement.placaUser} label="Placa" />
-        
+        {lastElement.selectedCar !== "" && (
+          <TextFieldDisplay value={lastElement.selectedCar} label="My Car" />
+        )}
+
         <Typography>
           You'll so many info about process in your email:{" "}
           <span style={{ color: "orange" }}>{lastElement.emailUser}</span>
@@ -63,7 +71,11 @@ const SucessScreen = () => {
       </section>
 
       <img src={car} id={styles.img} />
-      <ButtonCar color="primary.light" onClick={handleSubmitNewCar} sx={{marginBottom: '20px'}}>
+      <ButtonCar
+        color="primary.light"
+        onClick={handleSubmitNewCar}
+        sx={{ marginBottom: "20px" }}
+      >
         Submit a new car{" "}
       </ButtonCar>
     </section>
