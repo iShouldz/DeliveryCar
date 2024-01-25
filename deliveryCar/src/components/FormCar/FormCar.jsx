@@ -290,35 +290,35 @@ const FormCar = () => {
               )}
               value={country}
               onChange={(event, newValue) => setCountry(newValue)}
-              sx={{
-                color: "white",
-                "& .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "white !important",
-                  color: "white",
-                },
-                "&:hover .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "orange !important",
-                  color: "white !important",
-                },
-                "& input": {
-                  color: "white",
-                },
-                "& label": {
-                  color: "secondary.labelColor",
-                  "&.Mui-focused": {
-                    color: "white",
-                  },
-                  "&.MuiInputLabel-shrink": {
-                    color: "white",
-                    "&.Mui-focused": {
-                      color: "white !important", 
-                    },
-                    "&.Mui-error": {
-                      color: "red",
-                    },
-                  },
-                },
-              }}
+              // sx={{
+              //   color: "white",
+              //   "& .MuiOutlinedInput-notchedOutline": {
+              //     borderColor: "white !important",
+              //     color: "white",
+              //   },
+              //   "&:hover .MuiOutlinedInput-notchedOutline": {
+              //     borderColor: "orange !important",
+              //     color: "white !important",
+              //   },
+              //   "& input": {
+              //     color: "white",
+              //   },
+              //   "& label": {
+              //     color: "secondary.labelColor",
+              //     "&.Mui-focused": {
+              //       color: "white",
+              //     },
+              //     "&.MuiInputLabel-shrink": {
+              //       color: "white",
+              //       "&.Mui-focused": {
+              //         color: "white !important", 
+              //       },
+              //       "&.Mui-error": {
+              //         color: "red",
+              //       },
+              //     },
+              //   },
+              // }}
             />
           </FormHelperStyled>
 
@@ -335,11 +335,11 @@ const FormCar = () => {
                   sx={{
                     color: "white",
                     "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "white !important",
+                      borderColor: "white ",
                       color: "white",
                     },
                     "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "orange !important",
+                      borderColor: "#FBA403 !important",
                       color: "white !important",
                     },
                     "& input": {
@@ -352,13 +352,11 @@ const FormCar = () => {
                       },
                       "&.MuiInputLabel-shrink": {
                         color: "white",
-                        "&.Mui-focused": {
-                          color: "white !important", 
-                        },
                         "&.Mui-error": {
                           color: "red",
                         },
                       },
+                    
                     },
                   }}
                 />
@@ -368,36 +366,36 @@ const FormCar = () => {
               getOptionLabel={(option) => option}
               disabled={country === null}
               color="primary.light"
-              sx={{
-                color: "white",
-                "& .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "white ",
-                  color: "white",
-                },
-                "&:hover .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "#FBA403 !important",
-                  color: "white !important",
-                },
-                "& input": {
-                  color: "white",
-                },
-                "& label": {
-                  color: "secondary.labelColor",
-                  "&.Mui-focused": {
-                    color: "white",
-                  },
-                  "&.MuiInputLabel-shrink": {
-                    color: "white",
-                    "&.Mui-error": {
-                      color: "red",
-                    },
-                  },
-                },
-                "&.MuiInputBase-root-MuiOutlinedInput-root.Mui-disabled": {
-                  "& .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "blue !important",
-                  },
-                },
+              // sx={{
+              //   color: "white",
+              //   "& .MuiOutlinedInput-notchedOutline": {
+              //     borderColor: "white ",
+              //     color: "white",
+              //   },
+              //   "&:hover .MuiOutlinedInput-notchedOutline": {
+              //     borderColor: "#FBA403 !important",
+              //     color: "white !important",
+              //   },
+              //   "& input": {
+              //     color: "white",
+              //   },
+              //   "& label": {
+              //     color: "secondary.labelColor",
+              //     "&.Mui-focused": {
+              //       color: "white",
+              //     },
+              //     "&.MuiInputLabel-shrink": {
+              //       color: "white",
+              //       "&.Mui-error": {
+              //         color: "red",
+              //       },
+              //     },
+              //   },
+              //   "&.MuiInputBase-root-MuiOutlinedInput-root.Mui-disabled": {
+              //     "& .MuiOutlinedInput-notchedOutline": {
+              //       borderColor: "blue !important",
+              //     },
+              //   },
                 // "&:disabled": {
                 //   color: "white",
                 //   "& .MuiOutlinedInput-notchedOutline": {
@@ -417,7 +415,7 @@ const FormCar = () => {
                 //   },
 
                 // },
-              }}
+              // }}
             />
           </FormHelperStyled>
 
