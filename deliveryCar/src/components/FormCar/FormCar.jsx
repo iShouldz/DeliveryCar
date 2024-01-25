@@ -109,9 +109,9 @@ const FormCar = () => {
     console.log("switch" + switchData);
 
     const formData = {
-      fullName,
+      fullName: fullName.replace(/\b\w/g, (match) => match.toUpperCase()),
       emailUser,
-      placaUser,
+      placaUser: placaUser.toUpperCase(),
       selectedCar,
       country,
       city,
@@ -263,7 +263,9 @@ const FormCar = () => {
                   sx={{
                     color: "white",
                     "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: errors?.country?.message ? "red" : "white !important",
+                      borderColor: errors?.country?.message
+                        ? "red"
+                        : "white !important",
                       color: "white",
                     },
                     "&:hover .MuiOutlinedInput-notchedOutline": {
@@ -286,7 +288,6 @@ const FormCar = () => {
                       },
                     },
                   }}
-                  
                 />
               )}
               value={country}
@@ -338,7 +339,6 @@ const FormCar = () => {
                     color: "white !important",
                     borderColor: "white !important",
                   },
-
                 },
               }}
             />
@@ -355,9 +355,19 @@ const FormCar = () => {
                   label="City"
                   error={errors?.city?.message !== undefined}
                   sx={{
+                    "& .MuiFormLabel-root.MuiInputLabel-root.Mui-disabled": {
+                      color: !errors?.city?.message
+                        ? "#666666DE !important"
+                        : "#d32f2f",
+                    },
+                    "& .css-ko2p5j-MuiInputBase-root-MuiOutlinedInput-root.Mui-disabled .MuiOutlinedInput-notchedOutline": {
+                      borderColor: errors?.city?.message ? "red !important" : '#666666DE !important',
+                    },
                     color: "white",
                     "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: errors?.city?.message ? "red" : "white !important",
+                      borderColor: errors?.city?.message
+                        ? "red"
+                        : "#666666 !important",
                       color: "white",
                     },
                     "&:hover .MuiOutlinedInput-notchedOutline": {
@@ -367,8 +377,9 @@ const FormCar = () => {
                     "& input": {
                       color: "white",
                     },
+
                     "& label": {
-                      color: "secondary.labelColor",
+                      color: "secondary.light",
                       "&.Mui-focused": {
                         color: "white",
                       },
@@ -434,7 +445,11 @@ const FormCar = () => {
                     color: "white !important",
                     borderColor: "white !important",
                   },
-
+                  "&.MuiInputBase-root.Mui-disabled": {
+                    "& label": {
+                      color: "blue !important",
+                    },
+                  },
                 },
               }}
             />
