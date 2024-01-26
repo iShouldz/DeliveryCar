@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unknown-property */
 import { Button, FormGroup, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
@@ -6,7 +7,6 @@ import styles from "./styles.module.css";
 import TextFuildCar from "../../../components/UI/TextFuildCar/TextFuildCar";
 
 const StartHome = () => {
-  const [pickupData, setPickupData] = useState("");
   const [destinationData, setDestinationData] = useState("");
   const [currentLocation, setCurrentLocation] = useState("");
   const [latitude, setLatitude] = useState({
@@ -104,6 +104,7 @@ const StartHome = () => {
             id="destination"
             label="Your Destination"
             value={destinationData}
+            onClear={setDestinationData}
             onChange={(event) => setDestinationData(event.target.value)}
           />
 
