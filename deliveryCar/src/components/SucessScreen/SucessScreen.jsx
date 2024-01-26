@@ -40,7 +40,7 @@ const SucessScreen = () => {
   const oldData = () => {
     if (lastElement.selectedCar === "") {
       return {
-        country: lastElement.fullName,
+        country: lastElement.country,
         city: lastElement.city,
         emailUser: lastElement.emailUser,
       };
