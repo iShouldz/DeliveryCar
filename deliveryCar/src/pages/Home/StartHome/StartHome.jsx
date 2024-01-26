@@ -18,36 +18,36 @@ const StartHome = () => {
     console.log();
   };
 
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const { latitude, longitude } = position.coords;
-        setLatitude({ latitude, longitude });
-        const nominatimUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
-        fetch(nominatimUrl)
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.display_name) {
-              const city = data.address.city_district;
-              const state = data.address.state;
-              const countryUser = data.address.country;
+  // useEffect(() => {
+  //   navigator.geolocation.getCurrentPosition(
+  //     (position) => {
+  //       const { latitude, longitude } = position.coords;
+  //       setLatitude({ latitude, longitude });
+  //       const nominatimUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+  //       fetch(nominatimUrl)
+  //         .then((response) => response.json())
+  //         .then((data) => {
+  //           if (data.display_name) {
+  //             const city = data.address.city_district;
+  //             const state = data.address.state;
+  //             const countryUser = data.address.country;
 
-              setCurrentLocation(`${city}, ${state}, ${countryUser}`);
-            } else {
-              console.error(
-                "Não foi possível obter informações de localização."
-              );
-            }
-          })
-          .catch((error) => {
-            console.error("Erro ao obter informações de localização:", error);
-          });
-      },
-      (error) => {
-        console.error("Erro ao obter a localização:", error.message);
-      }
-    );
-  }, []);
+  //             setCurrentLocation(`${city}, ${state}, ${countryUser}`);
+  //           } else {
+  //             console.error(
+  //               "Não foi possível obter informações de localização."
+  //             );
+  //           }
+  //         })
+  //         .catch((error) => {
+  //           console.error("Erro ao obter informações de localização:", error);
+  //         });
+  //     },
+  //     (error) => {
+  //       console.error("Erro ao obter a localização:", error.message);
+  //     }
+  //   );
+  // }, []);
 
   const handleMaps = () => {
     const url = `https://www.google.com.br/maps/dir/${currentLocation}/${destinationData}/`;
@@ -72,6 +72,7 @@ const StartHome = () => {
             Need a ride?
           </Typography>
           <Typography
+          aria-label="bookwith"
             variant="h3"
             sx={{ fontWeight: "bold", color: "primary.light" }}
           >
@@ -108,6 +109,7 @@ const StartHome = () => {
           />
 
           <Button
+          aria-label="find a driver"
             variant="contained"
             sx={{
               width: "544px",
