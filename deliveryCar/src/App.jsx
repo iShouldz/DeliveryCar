@@ -5,8 +5,12 @@ import Root from "./pages/Root/Root";
 import MobileApp from "./pages/MobileApp/MobileApp";
 import ContactUs from "./pages/ContactUs/ContactUs";
 import GetTaxi from "./pages/GetTaxi/GetTaxi";
+import { useSelector } from "react-redux";
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 function App() {
+  const isAuthenticated = useSelector((state) => state.login.isLogado);
+  console.log(isAuthenticated)
   const router = createBrowserRouter([
     {
       path: "/",
@@ -16,6 +20,10 @@ function App() {
         { path: "/mobile-app", element: <MobileApp /> },
         { path: "/contact-us", element: <ContactUs /> },
         { path: "/getTaxi", element: <GetTaxi /> },
+        {
+          path: "/dashboard",
+          element: isAuthenticated === true ? <Dashboard /> : <Home />,
+        },
       ],
     },
   ]);
