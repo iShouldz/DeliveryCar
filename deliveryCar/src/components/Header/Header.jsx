@@ -67,11 +67,13 @@ const Header = () => {
               onClick={() => handleGoTo("")}
               value="Home"
               id="tab-home"
+              data-testid="tab-home"
             />
             <Tab
               label="Getting a Taxi"
               value="Getting a Taxi"
               id="tab-getting-taxi"
+              data-testid="tab-getting-taxi"
               aria-label="Getting a Taxi"
               onClick={() => handleGoTo("getTaxi")}
               sx={{
@@ -95,6 +97,8 @@ const Header = () => {
               onClick={() => handleGoTo("mobile-app")}
               value="Mobile App"
               id="tab-mobile-app"
+              data-testid="tab-mobile-app"
+
             />
             <Tab
               label="Contact Us"
@@ -109,16 +113,19 @@ const Header = () => {
               onClick={() => handleGoTo("contact-us")}
               value="Contact Us"
               id="tab-contact-us"
+              data-testid="tab-contact-us"
+
             />
           </Tabs>
           <Box className={styles.userBar}>
-            <IconButton size="large" aria-label="Notification icon">
+            <IconButton size="large" aria-label="Notification icon" data-testid="Notification icon">
               <img src={notification} alt="Notification icon" />
             </IconButton>
             <hr />
 
             <IconButton
               size="large"
+              data-testid="User icon"
               aria-label="User icon"
               onClick={() => setStateLogin((prevState) => !prevState)}
             >
