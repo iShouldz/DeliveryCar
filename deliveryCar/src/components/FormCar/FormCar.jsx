@@ -38,9 +38,8 @@ import SedanRadio from "../UI/SedanRadio/SedanRadio";
 import SuvRadio from "../UI/SuvRadio/SuvRadio";
 import SemiRadio from "../UI/SemiRadio/SemiRadio";
 import LuxuryRadio from "../UI/LuxuryRadio/LuxuryRadio";
-import errorIcon from "../../assets/form/errorIcon.png";
 import FormHelperStyled from "../FormHelperStyled/FormHelperStyled";
-import {stylesFormSX, switchFormSX} from '../../utils/stylesSX'
+import { stylesFormSX, switchFormSX } from "../../utils/stylesSX";
 const schema = yup
   .object({
     fullName: yup
@@ -184,9 +183,7 @@ const FormCar = () => {
               {...register("fullName")}
               error={errors?.fullName?.message !== undefined}
               color="secondary"
-              sx={
-                stylesFormSX
-              }
+              sx={stylesFormSX}
             />
           </FormHelperStyled>
 
@@ -207,18 +204,27 @@ const FormCar = () => {
               options={Object.keys(jsonCountry)}
               renderInput={(params) => (
                 <TextField
-                id="country-field"
+                  id="country-field"
                   {...params}
                   name="country"
                   {...register("country")}
-                  label="Contry"
+                  label="Country"
                   error={errors?.country?.message !== undefined}
                   sx={{
+                    "& .MuiAutocomplete-endAdornment .MuiSvgIcon-root": {
+                      fill: errors?.country?.message ? "red" : "white",
+                    },
+                    "&:focus-within .MuiAutocomplete-endAdornment .MuiSvgIcon-root":
+                      {
+                        fill: errors?.country?.message ? "red" : "#FBA403",
+                      },
                     color: "white",
                     "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: errors?.country?.message
-                        ? "red"
-                        : "white !important",
+                      borderColor: errors?.country?.message ? "red": "white !important",
+                      color: "white",
+                    },
+                    "&:focus .MuiOutlinedInput-notchedOutline": {
+                      borderColor: errors?.country?.message ? "red": !errors?.country?.message && !country === null ? "white" : '#FBA403 !important',
                       color: "white",
                     },
                     "&:hover .MuiOutlinedInput-notchedOutline": {
@@ -311,21 +317,32 @@ const FormCar = () => {
               options={city}
               renderInput={(params) => (
                 <TextField
-                id="city-field"
+                  id="city-field"
                   {...params}
                   name="city"
                   {...register("city")}
                   label="City"
                   error={errors?.city?.message !== undefined}
                   sx={{
+                    "& .MuiAutocomplete-endAdornment .MuiSvgIcon-root": {
+                      fill: errors?.city?.message ? "red" : !errors?.city?.message && !country === null ? "white" : 'gray',
+                    },
+                    "&:focus-within .MuiAutocomplete-endAdornment .MuiSvgIcon-root":
+                      {
+                        fill: errors?.city?.message ? "red" : "#FBA403",
+                      },
                     "& .MuiFormLabel-root.MuiInputLabel-root.Mui-disabled": {
                       color: !errors?.city?.message
                         ? "#666666DE !important"
                         : "#d32f2f",
                     },
-                    "& .css-ko2p5j-MuiInputBase-root-MuiOutlinedInput-root.Mui-disabled .MuiOutlinedInput-notchedOutline": {
-                      borderColor: errors?.city?.message ? "red !important" : '#666666DE !important',
-                    },
+                    "& .css-ko2p5j-MuiInputBase-root-MuiOutlinedInput-root.Mui-disabled .MuiOutlinedInput-notchedOutline":
+                      {
+                        borderColor: errors?.city?.message
+                          ? "red !important"
+                          : "#666666DE !important",
+                          
+                      },
                     color: "white",
                     "& .MuiOutlinedInput-notchedOutline": {
                       borderColor: errors?.city?.message
@@ -446,7 +463,7 @@ const FormCar = () => {
                 value="start"
                 control={
                   <Switch
-                  id="switch-field"
+                    id="switch-field"
                     {...field}
                     checked={field.value}
                     onChange={(e) => {
