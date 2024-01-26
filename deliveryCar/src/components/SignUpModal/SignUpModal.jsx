@@ -28,6 +28,7 @@ const SignUpModal = ({ open, onClose }) => {
           variant="h3"
           component="h2"
           sx={{ color: "secondary.main", fontWeight: "bold" }}
+          data-testid="signup"
         >
           SIGN UP
         </Typography>
