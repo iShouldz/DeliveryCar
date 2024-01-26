@@ -12,11 +12,11 @@ import updateCar from "../../assets/updateCar.png";
 import ButtonCar from "../UI/ButtonCar/ButtonCar";
 const schema = yup
   .object({
-    fullName: yup
+    fullNameNew: yup
       .string()
       .matches(/^[a-zA-Z]+ [a-zA-Z]+$/, "Invalid name")
       .required(),
-    placaUser: yup
+    placaUserNew: yup
       .string()
       .matches(/^[a-zA-Z]{3}-\d{3}$/, "Invalid refferal")
       .required(),
@@ -28,8 +28,28 @@ const ModalUpdate = ({ open, title, description, id, oldData, onClose }) => {
 
   const handleUpdate = (data) => {
     const { fullName, placaUser } = data;
+
+    let {
+      fullName,
+      emailUser,
+      placaUser,
+      selectedCar,
+      country,
+      city,
+      switchData,
+    } = data;
+
+    const newData = {
+      fullName: fullName, 
+      emailUser: oldData.emailUser,
+      placaUser: placaUser,
+      selectedCar: oldData.selectedCar,
+      country: oldData.country,
+      city: oldData.city,
+      switchData: oldData.switchData
+    }
     console.log(fullName, placaUser);
-    editCar(id, { fullName, placaUser, ...oldData });
+    editCar(id, newData);
   };
 
   const editCar = async (id, novosDados) => {
@@ -88,7 +108,7 @@ const ModalUpdate = ({ open, title, description, id, oldData, onClose }) => {
                 id="nameUser"
                 label="Full Name"
                 name="fullName"
-                {...register("fullName")}
+                {...register("fullNameNew")}
                 error={errors?.fullName?.message !== undefined}
                 color="secondary"
                 sx={{
@@ -125,7 +145,7 @@ const ModalUpdate = ({ open, title, description, id, oldData, onClose }) => {
                 id="placaUser"
                 label="Referral Code"
                 name="placaUser"
-                {...register("placaUser")}
+                {...register("placaUserNew")}
                 error={errors?.placaUser?.message !== undefined}
                 color="secondary"
                 sx={{
