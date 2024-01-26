@@ -1,4 +1,4 @@
-import React from "react";
+/* eslint-disable react/prop-types */
 
 const SedanRadio = ({type}) => {
   return (
@@ -8,6 +8,7 @@ const SedanRadio = ({type}) => {
       viewBox="0 0 52 29"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      aria-label="sedanCar"
     >
       <g id="Card Image">
         <path
