@@ -11,7 +11,9 @@ export const theme = createTheme({
         secondary: {
             main: '#FBA403',
             light: '#B3B3B3', //laranja
-            dark: '#EA9801'
+            dark: '#EA9801',
+            labelColor: '#666666DE',
+            blue: 'blue'
         },
 
     }

@@ -5,12 +5,17 @@ const carSlice = createSlice({
     name: 'cars',
     initialState: initialCarsState,
     reducers: {
-        handleFetching(state, action){
+        handleFetching(state, action) {
             state.fetching = action.payload
         },
-        handleCarItem(state, action){
+        handleCarItem(state, action) {
             state.item = action.payload
-        }
+        },
+        handleDeletePlant(state, action) {
+            state.item = state.item.filter(
+                (plant) => plant.id !== action.payload
+            );
+        },
     }
 })
 

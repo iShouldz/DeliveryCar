@@ -22,6 +22,7 @@
     "@mui/system": "^5.15.6",
     "@reduxjs/toolkit": "^2.0.1",
     "json-server": "^1.0.0-alpha.22",
+    "mock-geolocation": "^1.0.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.3",

@@ -24,35 +24,27 @@ const schema = yup
   .required();
 
 const ModalUpdate = ({ open, title, description, id, oldData, onClose }) => {
+  console.log(oldData)
   const dispatch = useDispatch();
 
   const handleUpdate = (data) => {
-    const { fullName, placaUser } = data;
-
-    let {
-      fullName,
-      emailUser,
-      placaUser,
-      selectedCar,
-      country,
-      city,
-      switchData,
-    } = data;
+    const { fullNameNew, placaUserNew } = data;
 
     const newData = {
-      fullName: fullName, 
+      fullName: fullNameNew, 
       emailUser: oldData.emailUser,
-      placaUser: placaUser,
+      placaUser: placaUserNew,
       selectedCar: oldData.selectedCar,
       country: oldData.country,
       city: oldData.city,
       switchData: oldData.switchData
     }
-    console.log(fullName, placaUser);
+    console.log(newData);
     editCar(id, newData);
   };
 
   const editCar = async (id, novosDados) => {
+    console.log(novosDados)
     const url = `http://localhost:3000/cars/${id}`;
     const options = {
       method: "PUT",
