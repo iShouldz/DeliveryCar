@@ -85,9 +85,8 @@ const StartHome = () => {
         </article>
 
         <FormGroup onSubmit={handleSubmit} className={styles.containerMain}>
-          <Typography
-            variant="h5"
-            sx={{ color: "primary.light", fontWeight: "bold" }}
+          <Typography 
+            sx={{ color: "primary.light", fontWeight: "700", fontSize: '24px'}}
           >
             Find a ride now
           </Typography>

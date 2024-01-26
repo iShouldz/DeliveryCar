@@ -16,14 +16,14 @@ const MidHome = () => {
     <section>
       <div className={styles.textContainer}>
         <Typography
-          variant="h5"
-          sx={{ textTransform: "uppercase", color: "secondary.main" }}
+          
+          sx={{ textTransform: "uppercase", color: "secondary.main", fontSize: '26px'}}
         >
           Why should you ride with us?
         </Typography>
         <Typography
-          variant="h4"
-          sx={{ color: "primary.light", fontWeight: "bold" }}
+          
+          sx={{ color: "primary.light", fontWeight: "bold", fontSize: '45px' }}
         >
           Best in class rides
         </Typography>
