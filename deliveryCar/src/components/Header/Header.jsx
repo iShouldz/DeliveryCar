@@ -35,7 +35,7 @@ const Header = () => {
     setSelectValue(newValue);
   };
 
-  console.log(theme);
+  // console.log(theme);
 
   return (
     <header>
