@@ -8,20 +8,14 @@ import {
   Typography,
 } from "@mui/material";
 import imagem from "../../assets/iconCard.png";
-import ModalTemplate from "../../components/ModalTemplate/ModalTemplate";
 import { useState } from "react";
 import ModalDetails from "../ModalDetails/ModalDetails";
 
-const CardDriver = ({ name, city, country, email, myCar = "" }) => {
+const CardDriver = ({ id, name, city, country, email, myCar = "" }) => {
   const handleSendEmail = (e) => {
     window.location.href = `mailto:${email}`;
     e.preventDefault();
   };
-
-  const nameI = name + " details";
-  const descriptionI = `Adress: ${city}, ${country} \n Email: ${email} Type car: ${
-    myCar === "" ? "Sem carro" : ""
-  }`;
 
   const [modalControler, setModalControler] = useState();
   return (
@@ -62,6 +56,7 @@ const CardDriver = ({ name, city, country, email, myCar = "" }) => {
         </Button>
 
         <ModalDetails
+        id={id}
           open={modalControler}
           name={name}
           city={city}

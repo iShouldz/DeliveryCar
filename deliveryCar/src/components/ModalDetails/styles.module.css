@@ -10,7 +10,7 @@
 
   .modalContainer {
     display: flex;
-  
+    justify-content: space-evenly;
     max-width: 800px;
     max-height: 800px;
     height: 50%;

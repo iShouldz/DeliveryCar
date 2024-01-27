@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDataCars } from "../../store/login/loginActions";
 import { carActions } from "../../store/cars/carSlice";
@@ -44,7 +44,8 @@ const Dashboard = () => {
         {isFetching &&
           carData.map((item) => (
             <CardDriver
-              key={Math.random()}
+              key={item.id}
+              id={item.id}
               name={item.fullName}
               city={item.city}
               country={item.country}
