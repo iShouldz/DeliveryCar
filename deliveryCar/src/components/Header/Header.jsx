@@ -2,6 +2,8 @@ import {
   AppBar,
   Box,
   IconButton,
+  Menu,
+  MenuItem,
   Tab,
   Tabs,
   Toolbar,
@@ -23,6 +25,7 @@ const Header = () => {
   const [selectedUrl, setSelecteUrl] = useState("");
   const [selectValue, setSelectValue] = useState("");
   const [stateLogin, setStateLogin] = useState(false);
+  const [dashboardControl, setDashboardControl] = useState(false)
   const isAuthenticated = useSelector((state) => state.login.isLogado);
 
   const handleGoTo = (url) => {
@@ -98,7 +101,6 @@ const Header = () => {
               value="Mobile App"
               id="tab-mobile-app"
               data-testid="tab-mobile-app"
-
             />
             <Tab
               label="Contact Us"
@@ -114,11 +116,14 @@ const Header = () => {
               value="Contact Us"
               id="tab-contact-us"
               data-testid="tab-contact-us"
-
             />
           </Tabs>
           <Box className={styles.userBar}>
-            <IconButton size="large" aria-label="Notification icon" data-testid="Notification icon">
+            <IconButton
+              size="large"
+              aria-label="Notification icon"
+              data-testid="Notification icon"
+            >
               <img src={notification} alt="Notification icon" />
             </IconButton>
             <hr />
@@ -127,8 +132,28 @@ const Header = () => {
               size="large"
               data-testid="User icon"
               aria-label="User icon"
-              onClick={() => setStateLogin((prevState) => !prevState)}
+              onClick={() => setDashboardControl((prevState) => !prevState)}
             >
+              <Menu
+                id="demo-positioned-menu"
+                aria-labelledby="demo-positioned-button"
+                anchorEl={dashboardControl}
+                open={dashboardControl}
+                onClose={() => setDashboardControl(null)}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "left",
+                }}
+                sx={{marginTop: '40px', marginRight: '400px'}}
+              >
+                <MenuItem onClick={() => {}}>Profile</MenuItem>
+                <MenuItem onClick={() => handleGoTo("dashboard")}>Dashboard</MenuItem>
+                <MenuItem onClick={() => {}}>Logout</MenuItem>
+              </Menu>
               <img src={userLogo} alt="User icon" />
             </IconButton>
             {isAuthenticated ? (
