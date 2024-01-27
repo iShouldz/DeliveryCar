@@ -54,7 +54,7 @@ const SucessScreen = () => {
     }
   };
   const handleSubmitNewCar = () => {
-    deleteCar(lastElement.id);
+    // deleteCar(lastElement.id);
     dispatch(carActions.handleFetching("form"));
   };
 
