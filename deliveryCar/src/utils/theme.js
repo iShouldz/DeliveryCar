@@ -18,3 +18,22 @@ export const theme = createTheme({
 
     }
 })
+
+export const themeLight = createTheme({
+    palette: {
+        primary: {
+            main: '#282828', //cinza de dentro
+            light: '#FFF',
+            grayRef: '#383838',
+            background: '#FFF'
+        },
+        secondary: {
+            main: '#FBA403',
+            light: '#B3B3B3', //laranja
+            dark: '#EA9801',
+            labelColor: '#666666DE',
+            blue: 'blue'
+        },
+
+    }
+})

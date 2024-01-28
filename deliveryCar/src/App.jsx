@@ -10,7 +10,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 
 function App() {
   const isAuthenticated = useSelector((state) => state.login.isLogado);
-  console.log(isAuthenticated)
+  // console.log(isAuthenticated)
   const router = createBrowserRouter([
     {
       path: "/",
