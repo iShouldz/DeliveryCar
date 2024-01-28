@@ -1,32 +1,39 @@
 import {
+  Alert,
   AppBar,
   Box,
+  Button,
   IconButton,
   Menu,
   MenuItem,
   Tab,
   Tabs,
   Toolbar,
-  useTheme,
 } from "@mui/material";
 import logo from "../../assets/Logo.svg";
 import userLogo from "../../assets/user-avatar.svg";
 import notification from "../../assets/bell-icon.svg";
+import notificationZero from "../../assets/bell-icon copy.svg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import styles from "./styles.module.css";
 import LoginModal from "../LoginModal/LoginModal";
 import SignUpModal from "../SignUpModal/SignUpModal";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { userActions } from "../../store/login/loginSlice";
+import AlertAction from "../AlertAction/AlertAction";
 
 const Header = () => {
   const navigate = useNavigate();
-  const theme = useTheme();
   const [selectedUrl, setSelecteUrl] = useState("");
   const [selectValue, setSelectValue] = useState("");
   const [stateLogin, setStateLogin] = useState(false);
-  const [dashboardControl, setDashboardControl] = useState(false)
+  const [dashboardControl, setDashboardControl] = useState(null);
+  const [notificationsControl, setNotificationsControl] = useState(null);
   const isAuthenticated = useSelector((state) => state.login.isLogado);
+  const notifications = useSelector((state) => state.login.notifications);
+  const isNotification = useSelector((state) => state.login.newNotification);
+  const dispatch = useDispatch();
 
   const handleGoTo = (url) => {
     navigate(`/${url}`);
@@ -38,8 +45,10 @@ const Header = () => {
     setSelectValue(newValue);
   };
 
-  // console.log(theme);
-
+  const handleResolveNotification = () => {
+    dispatch(userActions.handleRemoveNotifications());
+    dispatch(userActions.handleHideNotification());
+  };
   return (
     <header>
       <AppBar
@@ -123,8 +132,40 @@ const Header = () => {
               size="large"
               aria-label="Notification icon"
               data-testid="Notification icon"
+              onClick={() => setNotificationsControl((prevState) => !prevState)}
             >
-              <img src={notification} alt="Notification icon" />
+              <Menu
+                id="demo-positioned-menu"
+                aria-labelledby="demo-positioned-button"
+                // anchorEl={dashboardControl}
+                open={Boolean(notificationsControl)}
+                onClick={(e) => setNotificationsControl(event.currentTarget)}
+                onClose={() => setNotificationsControl(null)}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "left",
+                }}
+                sx={{ marginTop: "40px", marginRight: "400px" }}
+              >
+                {notifications.map((not) => (
+                  <MenuItem key={Math.random()}>{not.message}</MenuItem>
+                ))}
+                {notifications.length === 1 && (
+                  <MenuItem key={Math.random()}>0 Notificações</MenuItem>
+                )}
+                <MenuItem onClick={handleResolveNotification}>
+                  Clear notifications
+                </MenuItem>
+              </Menu>
+              {isNotification && notifications.length > 1 ? (
+                <img src={notification} alt="Notification icon" />
+              ) : (
+                <img src={notificationZero} alt="Notification icon" />
+              )}
             </IconButton>
             <hr />
 
@@ -137,8 +178,9 @@ const Header = () => {
               <Menu
                 id="demo-positioned-menu"
                 aria-labelledby="demo-positioned-button"
-                anchorEl={dashboardControl}
-                open={dashboardControl}
+                // anchorEl={dashboardControl}
+                open={Boolean(dashboardControl)}
+                onClick={(e) => setDashboardControl(event.currentTarget)}
                 onClose={() => setDashboardControl(null)}
                 anchorOrigin={{
                   vertical: "top",
@@ -148,11 +190,17 @@ const Header = () => {
                   vertical: "top",
                   horizontal: "left",
                 }}
-                sx={{marginTop: '40px', marginRight: '400px'}}
+                sx={{ marginTop: "40px", marginRight: "400px" }}
               >
                 <MenuItem onClick={() => {}}>Profile</MenuItem>
-                <MenuItem onClick={() => handleGoTo("dashboard")}>Dashboard</MenuItem>
-                <MenuItem onClick={() => {}}>Logout</MenuItem>
+                <MenuItem onClick={() => handleGoTo("dashboard")}>
+                  Dashboard
+                </MenuItem>
+                <MenuItem
+                  onClick={() => setStateLogin((prevState) => !prevState)}
+                >
+                  {isAuthenticated ? "Logout" : "Login"}
+                </MenuItem>
               </Menu>
               <img src={userLogo} alt="User icon" />
             </IconButton>
@@ -167,6 +215,27 @@ const Header = () => {
                 onClose={() => setStateLogin((prevState) => !prevState)}
               />
             )}
+            <div
+              style={{
+                position: "fixed",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                padding: 16,
+                zIndex: 1000,
+                justifyContent: "flex-end",
+                display: "flex",
+              }}
+            >
+              {isNotification && (
+                <AlertAction
+                  typeSeverity={
+                    notifications[notifications.length - 1].typeSeverity
+                  }
+                  message={notifications[notifications.length - 1].message}
+                />
+              )}
+            </div>
           </Box>
         </Toolbar>
       </AppBar>
