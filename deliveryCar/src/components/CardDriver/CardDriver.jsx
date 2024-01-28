@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import {
-  Button,
   Card,
   CardActions,
   CardContent,
@@ -10,6 +9,7 @@ import {
 import imagem from "../../assets/iconCard.png";
 import { useState } from "react";
 import ModalDetails from "../ModalDetails/ModalDetails";
+import ButtonCar from "../UI/ButtonCar/ButtonCar";
 
 const CardDriver = ({ id, name, city, country, email, myCar = "" }) => {
   const handleSendEmail = (e) => {
@@ -37,26 +37,28 @@ const CardDriver = ({ id, name, city, country, email, myCar = "" }) => {
       </CardContent>
 
       <CardActions sx={{ justifyContent: "center" }}>
-        <Button
-          sx={{ color: "secondary.main" }}
-          aria-label={`email of ${name} `}
-          onClick={handleSendEmail}
-        >
-          Send email
-        </Button>
-
-        <Button
+        <ButtonCar
+          color="white"
           sx={{ color: "secondary.main" }}
           aria-label={`Learn more about ${name} car`}
           onClick={() => {
             setModalControler((prevState) => !prevState);
           }}
         >
-          Learn more
-        </Button>
+          Info
+        </ButtonCar>
+
+        <ButtonCar
+          color="white"
+          sx={{ color: "secondary.main" }}
+          aria-label={`email of ${name} `}
+          onClick={handleSendEmail}
+        >
+          Send email
+        </ButtonCar>
 
         <ModalDetails
-        id={id}
+          id={id}
           open={modalControler}
           name={name}
           city={city}

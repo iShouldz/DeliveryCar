@@ -10,6 +10,7 @@ import { carActions } from "../../store/cars/carSlice";
 import { useDispatch } from "react-redux";
 import updateCar from "../../assets/updateCar.png";
 import ButtonCar from "../UI/ButtonCar/ButtonCar";
+import { userActions } from "../../store/login/loginSlice";
 const schema = yup
   .object({
     fullNameNew: yup
@@ -24,27 +25,27 @@ const schema = yup
   .required();
 
 const ModalUpdate = ({ open, title, description, id, oldData, onClose }) => {
-  console.log(oldData)
+  console.log(oldData);
   const dispatch = useDispatch();
 
   const handleUpdate = (data) => {
     const { fullNameNew, placaUserNew } = data;
 
     const newData = {
-      fullName: fullNameNew, 
+      fullName: fullNameNew,
       emailUser: oldData.emailUser,
       placaUser: placaUserNew,
       selectedCar: oldData.selectedCar,
       country: oldData.country,
       city: oldData.city,
-      switchData: oldData.switchData
-    }
+      switchData: oldData.switchData,
+    };
     console.log(newData);
     editCar(id, newData);
   };
 
   const editCar = async (id, novosDados) => {
-    console.log(novosDados)
+    console.log(novosDados);
     const url = `http://localhost:3000/cars/${id}`;
     const options = {
       method: "PUT",
@@ -64,6 +65,13 @@ const ModalUpdate = ({ open, title, description, id, oldData, onClose }) => {
       const dadosAtualizados = await response.json();
       console.log("Dados atualizados:", dadosAtualizados);
       dispatch(carActions.handleFetching("loading"));
+      dispatch(userActions.handleHideNotification());
+      dispatch(
+        userActions.handleAddNotifications({
+          typeSeverity: "info",
+          message: `${novosDados.fullName} was updated with success`,
+        })
+      );
     } catch (error) {
       console.error("Erro na requisição:", error.message);
     }
@@ -170,10 +178,15 @@ const ModalUpdate = ({ open, title, description, id, oldData, onClose }) => {
             </FormHelperStyled>
           </section>
 
-          <ButtonCar type="submit" style={{ marginTop: "20px", marginRight: '20px'}}>
+          <ButtonCar
+            type="submit"
+            style={{ marginTop: "20px", marginRight: "20px" }}
+          >
             Update my data
           </ButtonCar>
-          <ButtonCar onClick={onClose} style={{ marginTop: "20px"}}>Close</ButtonCar>
+          <ButtonCar onClick={onClose} style={{ marginTop: "20px" }}>
+            Close
+          </ButtonCar>
         </form>
       </Box>
     </Modal>
