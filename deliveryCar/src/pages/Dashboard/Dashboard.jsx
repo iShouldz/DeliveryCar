@@ -31,7 +31,7 @@ const Dashboard = () => {
           padding: "30px",
         }}
       >
-        DashBoard
+        Dashboard
       </Typography>
       <section
         style={{

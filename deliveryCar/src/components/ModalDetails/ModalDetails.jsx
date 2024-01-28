@@ -4,6 +4,9 @@ import TextFieldDisplay from "../UI/TextFieldDisplay/TextFieldDisplay";
 import styles from "./styles.module.css";
 import ButtonCar from "../UI/ButtonCar/ButtonCar";
 import { deleteCar } from "../../store/login/loginActions";
+import { carActions } from "../../store/cars/carSlice";
+import { useDispatch } from "react-redux";
+import { userActions } from "../../store/login/loginSlice";
 
 const ModalDetails = ({
   id,
@@ -15,9 +18,18 @@ const ModalDetails = ({
   actionButton,
   myCar,
 }) => {
-  const handleDelete = () => {
-    deleteCar(id);
-    window.location.reload()
+  const dispatch = useDispatch();
+
+  const handleDelete = async () => {
+    const deleteCarUpdate = await deleteCar(id);
+    dispatch(carActions.handleCarItem(deleteCarUpdate));
+    dispatch(userActions.handleHideNotification());
+    dispatch(
+      userActions.handleAddNotifications({
+        typeSeverity: "success",
+        message: `${name} was deleted with sucess`,
+      })
+    );
   };
 
   return (
@@ -29,7 +41,7 @@ const ModalDetails = ({
           component="h2"
           sx={{ color: "secondary.main", fontWeight: "bold" }}
         >
-          {name} details
+          {name} profile
         </Typography>
 
         <section className={styles.userInfoContainer}>
@@ -51,7 +63,6 @@ const ModalDetails = ({
           <ButtonCar color="white" onClick={handleDelete}>
             Delete
           </ButtonCar>
-
           <ButtonCar color="white" onClick={actionButton}>
             Close
           </ButtonCar>
