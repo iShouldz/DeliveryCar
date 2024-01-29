@@ -1,5 +1,61 @@
 {
   "cars": [
-    
+    {
+      "fullName": "Zildo Azul",
+      "emailUser": "zildo@gmail.com",
+      "placaUser": "AAA-504",
+      "selectedCar": "Luxury Car",
+      "country": "Aruba",
+      "city": "Palm Beach",
+      "id": 31
+    },
+    {
+      "fullName": "Zildo Azul",
+      "emailUser": "zildo@gmail.com",
+      "placaUser": "AAA-504",
+      "selectedCar": "Luxury Car",
+      "country": "Aruba",
+      "city": "Palm Beach",
+      "id": 33
+    },
+    {
+      "fullName": "Lucas maia",
+      "emailUser": "iranapedro@gmail.com",
+      "placaUser": "AAA-851",
+      "country": "Brasil",
+      "city": "La Massana",
+      "id": 34
+    },
+    {
+      "fullName": "Pedro Caitano De Souza Neto",
+      "emailUser": "pedroshouldz@outlook.com",
+      "placaUser": "PGN-211",
+      "selectedCar": "Semi Luxury",
+      "country": "Brasil",
+      "city": "Azazga",
+      "id": 35
+    }
+  ],
+  "users": [
+    {
+      "emailUserS": "pedro@gmail.com",
+      "senhaS": "senha123",
+      "id": 1
+    },
+    {
+      "emailUser": "pedro@gmail.com",
+      "senha": "senha123",
+      "id": 2
+    },
+    {
+      "emailUser": "iranapedro@gmail.com",
+      "senha": "senha123",
+      "id": 3
+    },
+    {
+      "emailUser": "supa@gmail.com",
+      "senha": "senha123",
+      "id": 4
+    }
   ]
 }

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialUsersState = {
-  users: [], isLogado: true, notifications: [{
+  users: [], isLogado: false, notifications: [{
     typeSeverity: '', message: ''
   }], newNotification: false, isThemeLight: false
 };

@@ -1,0 +1,12 @@
+.mobileContainer{
+   justify-content: center; 
+   display: flex;
+   padding: 80px;
+}
+
+.mobileImage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+}

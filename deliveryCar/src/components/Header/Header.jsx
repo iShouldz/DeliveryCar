@@ -1,8 +1,6 @@
 import {
-  Alert,
   AppBar,
   Box,
-  Button,
   IconButton,
   Menu,
   MenuItem,
@@ -27,9 +25,15 @@ const Header = () => {
   const navigate = useNavigate();
   const [selectedUrl, setSelecteUrl] = useState("");
   const [selectValue, setSelectValue] = useState("");
-  const [stateLogin, setStateLogin] = useState(false);
+
+  // const [stateLogin, setStateLogin] = useState(false);
+
+  const [modalLoginControl, setModalLoginControl] = useState(false);
+  const [modalSignupControl, setModalSignUpControl] = useState(false);
+
   const [dashboardControl, setDashboardControl] = useState(null);
   const [notificationsControl, setNotificationsControl] = useState(null);
+
   const isAuthenticated = useSelector((state) => state.login.isLogado);
   const notifications = useSelector((state) => state.login.notifications);
   const isNotification = useSelector((state) => state.login.newNotification);
@@ -180,7 +184,7 @@ const Header = () => {
                 aria-labelledby="demo-positioned-button"
                 // anchorEl={dashboardControl}
                 open={Boolean(dashboardControl)}
-                onClick={(e) => setDashboardControl(event.currentTarget)}
+                onClick={(event) => setDashboardControl(event.currentTarget)}
                 onClose={() => setDashboardControl(null)}
                 anchorOrigin={{
                   vertical: "top",
@@ -196,25 +200,44 @@ const Header = () => {
                 <MenuItem onClick={() => handleGoTo("dashboard")}>
                   Dashboard
                 </MenuItem>
-                <MenuItem
-                  onClick={() => setStateLogin((prevState) => !prevState)}
-                >
-                  {isAuthenticated ? "Logout" : "Login"}
-                </MenuItem>
+                {!isAuthenticated && (
+                  <MenuItem
+                    onClick={() =>
+                      setModalSignUpControl((prevState) => !prevState)
+                    }
+                  >
+                    Sign-up
+                  </MenuItem>
+                )}
+                {isAuthenticated ? (
+                  <MenuItem
+                    onClick={() => dispatch(userActions.handleUpdateLogin())}
+                  >
+                    Logout
+                  </MenuItem>
+                ) : (
+                  <MenuItem
+                    onClick={() =>
+                      setModalLoginControl((prevState) => !prevState)
+                    }
+                  >
+                    Login
+                  </MenuItem>
+                )}
               </Menu>
               <img src={userLogo} alt="User icon" />
             </IconButton>
-            {isAuthenticated ? (
-              <SignUpModal
-                open={stateLogin}
-                onClose={() => setStateLogin((prevState) => !prevState)}
-              />
-            ) : (
-              <LoginModal
-                open={stateLogin}
-                onClose={() => setStateLogin((prevState) => !prevState)}
-              />
-            )}
+
+            <SignUpModal
+              open={modalSignupControl}
+              onClose={() => setModalSignUpControl((prevState) => !prevState)}
+            />
+
+            <LoginModal
+              open={modalLoginControl}
+              onClose={() => setModalLoginControl((prevState) => !prevState)}
+            />
+
             <div
               style={{
                 position: "fixed",

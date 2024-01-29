@@ -49,6 +49,7 @@ const Loading = () => {
       
     } catch (error) {
       console.error("Error fetching data:", error);
+      setStateModal(true)
     }
   };
 
