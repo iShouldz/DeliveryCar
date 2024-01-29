@@ -124,6 +124,7 @@ const SignUpModal = ({ open, onClose }) => {
             id="senha"
             sx={stylesFormSX}
             label="Senha"
+            type="password"
             // onClear={setSenha}
             // onChange={(event) => setSenha(event.target.value)}
             {...register("senha")}

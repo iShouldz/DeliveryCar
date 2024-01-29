@@ -116,6 +116,7 @@ const LoginModal = ({ open, onClose }) => {
           <TextField
             id="senha"
             label="Password"
+            type="password"
             sx={stylesFormSX}
             {...register("senha")}
           />
