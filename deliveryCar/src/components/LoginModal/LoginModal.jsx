@@ -27,6 +27,36 @@ const schema = yup
 const LoginModal = ({ open, onClose }) => {
   const dispatch = useDispatch();
 
+  const stylesFormSX = {
+    color: "white",
+    "& .MuiOutlinedInput-notchedOutline": {
+      borderColor: "white",
+      color: "white",
+    },
+    "&:hover .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#FBA403 !important",
+      color: "white !important",
+    },
+    "& input": {
+      color: "white",
+    },
+    "& label": {
+      color: "secondary.labelColor",
+      "&.Mui-focused": {
+        color: "white",
+      },
+      "&.MuiInputLabel-shrink": {
+        color: "white",
+        "&.Mui-focused": {
+          color: "#FBA403",
+        },
+        "&.Mui-error": {
+          color: "red",
+        },
+      },
+    },
+  };
+
   const handleLogin = async (data) => {
     // dispatch(userActions.handleUpdateLogin());
 
@@ -71,18 +101,51 @@ const LoginModal = ({ open, onClose }) => {
 
         <img src={loginImg} alt="Login image" />
 
-        <form onSubmit={handleSubmit(handleLogin)}>
-          <TextField id="email" label="Email" {...register("emailUser")} />
+        <form
+          onSubmit={handleSubmit(handleLogin)}
+          style={{ display: "flex", flexDirection: "column", gap: '10px' }}
+        >
+          <TextField
+            id="email"
+            label="Email"
+            sx={stylesFormSX}
+            {...register("emailUser")}
+          />
 
-          <TextField id="senha" label="Password" {...register("senha")} />
+          <TextField
+            id="senha"
+            label="Password"
+            sx={stylesFormSX}
+            {...register("senha")}
+          />
 
-          <Button type="submit" variant="contained">
-            LOGIN
-          </Button>
+          <div style={{display: 'flex', justifyContent: 'space-around', margin: '10px'}}>
+            <Button
+              type="submit"
+              sx={{
+                backgroundColor: "secondary.main",
+                "&:hover": {
+                  backgroundColor: "#EA9801",
+                },
+              }}
+              variant="contained"
+            >
+              LOGIN
+            </Button>
 
-          <Button onClick={onClose} variant="contained">
-            Close
-          </Button>
+            <Button
+              onClick={onClose}
+              sx={{
+                backgroundColor: "secondary.main",
+                "&:hover": {
+                  backgroundColor: "#EA9801",
+                },
+              }}
+              variant="contained"
+            >
+              Close
+            </Button>
+          </div>
         </form>
       </Box>
     </Modal>

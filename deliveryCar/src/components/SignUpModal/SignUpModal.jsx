@@ -61,6 +61,36 @@ const SignUpModal = ({ open, onClose }) => {
     onClose();
   };
 
+  const stylesFormSX = {
+    color: "white",
+    "& .MuiOutlinedInput-notchedOutline": {
+      borderColor: "white",
+      color: "white",
+    },
+    "&:hover .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#FBA403 !important",
+      color: "white !important",
+    },
+    "& input": {
+      color: "white",
+    },
+    "& label": {
+      color: "secondary.labelColor",
+      "&.Mui-focused": {
+        color: "white",
+      },
+      "&.MuiInputLabel-shrink": {
+        color: "white",
+        "&.Mui-focused": {
+          color: "#FBA403",
+        },
+        "&.Mui-error": {
+          color: "red",
+        },
+      },
+    },
+  };
+
   return (
     <Modal open={open} className={styles.containerMain}>
       <Box className={styles.modalContainer}>
@@ -75,11 +105,14 @@ const SignUpModal = ({ open, onClose }) => {
         </Typography>
 
         <img src={cadastroImg} alt="Cadastro image" />
-        <form onSubmit={handleSubmit(handleLogin)}>
+        <form
+          onSubmit={handleSubmit(handleLogin)}
+          style={{ display: "flex", flexDirection: "column", gap: '10px' }}
+        >
           <TextField
             id="email"
             label="Email"
-
+            sx={stylesFormSX}
             // onClear={setEmail}
             // onChange={(event) => setEmail(event.target.value)}
             {...register("emailUser")}
@@ -87,19 +120,45 @@ const SignUpModal = ({ open, onClose }) => {
 
           <TextField
             id="senha"
-
+            sx={stylesFormSX}
+            label="Senha"
             // onClear={setSenha}
             // onChange={(event) => setSenha(event.target.value)}
             {...register("senha")}
           />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              margin: "10px",
+            }}
+          >
+            <Button
+              type="submit"
+              sx={{
+                backgroundColor: "secondary.main",
+                "&:hover": {
+                  backgroundColor: "#EA9801",
+                },
+              }}
+              variant="contained"
+            >
+              SIGN UP
+            </Button>
 
-          <Button type="submit" variant="contained">
-            SIGN UP
-          </Button>
-
-          <Button onClick={onClose} variant="contained">
-            Close
-          </Button>
+            <Button
+              onClick={onClose}
+              sx={{
+                backgroundColor: "secondary.main",
+                "&:hover": {
+                  backgroundColor: "#EA9801",
+                },
+              }}
+              variant="contained"
+            >
+              Close
+            </Button>
+          </div>
         </form>
       </Box>
     </Modal>

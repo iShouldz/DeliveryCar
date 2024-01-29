@@ -46,7 +46,6 @@ const Loading = () => {
       if(data.length === undefined){
         setStateModal(true)
       }
-      
     } catch (error) {
       console.error("Error fetching data:", error);
       setStateModal(true)
