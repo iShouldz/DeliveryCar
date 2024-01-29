@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import { Box, Button, Modal, TextField, Typography } from "@mui/material";
 import ButtonCar from "../UI/ButtonCar/ButtonCar";
 import styles from "../../components/ModalTemplate/styles.module.css";
