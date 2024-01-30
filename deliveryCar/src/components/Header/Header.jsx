@@ -151,7 +151,7 @@ const Header = () => {
                 aria-labelledby="demo-positioned-button"
                 // anchorEl={dashboardControl}
                 open={Boolean(notificationsControl)}
-                onClick={(e) => setNotificationsControl(event.currentTarget)}
+                onClick={(event) => setNotificationsControl(event.currentTarget)}
                 onClose={() => setNotificationsControl(null)}
                 anchorOrigin={{
                   vertical: "top",
