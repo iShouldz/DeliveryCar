@@ -16,7 +16,7 @@ async function getDataCars() {
 const deleteCar = async (carId) => {
 
     try {
-        const response = await fetch(`https://json-server-mycar.vercel.app/cars/${carId}`, {
+        const response = await fetch(`http://localhost:3000/cars/${carId}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -39,7 +39,7 @@ const deleteCar = async (carId) => {
 const deleteUser = async (carId) => {
 
     try {
-        const response = await fetch(`https://json-server-mycar.vercel.app/users/${carId}`, {
+        const response = await fetch(`http://localhost:3000/users/${carId}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",

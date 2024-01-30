@@ -36,7 +36,7 @@ const Loading = () => {
 
   const fetchData = async () => {
     try {
-      const res = await fetch("https://json-server-mycar.vercel.app/cars/");
+      const res = await fetch("http://localhost:3000/cars/");
       const data = await res.json();
       console.log(data.length);
       if (data.length !== undefined) {

@@ -118,7 +118,7 @@ const FormCar = () => {
 
     console.log(fullName);
 
-    fetch("https://json-server-mycar.vercel.app/cars", {
+    fetch("http://localhost:3000/cars", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
