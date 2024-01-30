@@ -34,6 +34,9 @@ const CardDriver = ({ id, name, city, country, email, myCar = "" }) => {
         {myCar !== "" && (
           <Typography sx={{ color: "secondary.main" }}>{myCar}</Typography>
         )}
+        {myCar === "" && (
+          <Typography sx={{ color: "secondary.main" }}>No own car</Typography>
+        )}
       </CardContent>
 
       <CardActions sx={{ justifyContent: "center" }}>

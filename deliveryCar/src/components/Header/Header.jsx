@@ -20,6 +20,14 @@ import SignUpModal from "../SignUpModal/SignUpModal";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../store/login/loginSlice";
 import AlertAction from "../AlertAction/AlertAction";
+import LabelImportantIcon from '@mui/icons-material/LabelImportant';
+import DeleteIcon from '@mui/icons-material/Delete';
+import PersonIcon from '@mui/icons-material/Person';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -156,12 +164,13 @@ const Header = () => {
                 sx={{ marginTop: "40px", marginRight: "400px" }}
               >
                 {notifications.map((not) => (
-                  <MenuItem key={Math.random()}>{not.message}</MenuItem>
+                  <MenuItem key={Math.random()}> {not.message !== '' ? <> <LabelImportantIcon /> {not.message} </>  : ''}</MenuItem>
                 ))}
                 {notifications.length === 1 && (
-                  <MenuItem key={Math.random()}>0 Notificações</MenuItem>
+                  <MenuItem key={Math.random()}> <ThumbUpAltIcon /> 0 Notificações</MenuItem>
                 )}
                 <MenuItem onClick={handleResolveNotification}>
+                  <DeleteIcon fontSize="small" />
                   Clear notifications
                 </MenuItem>
               </Menu>
@@ -196,8 +205,10 @@ const Header = () => {
                 }}
                 sx={{ marginTop: "40px", marginRight: "400px" }}
               >
-                <MenuItem onClick={() => handleGoTo("profile")}>Profile</MenuItem>
+                <MenuItem onClick={() => handleGoTo("profile")}>
+                  <PersonIcon /> Profile</MenuItem>
                 <MenuItem onClick={() => handleGoTo("dashboard")}>
+                  <DashboardIcon />
                   Dashboard
                 </MenuItem>
                 {!isAuthenticated && (
@@ -206,6 +217,7 @@ const Header = () => {
                       setModalSignUpControl((prevState) => !prevState)
                     }
                   >
+                    <ExitToAppIcon />
                     Sign-up
                   </MenuItem>
                 )}
@@ -213,6 +225,7 @@ const Header = () => {
                   <MenuItem
                     onClick={() => dispatch(userActions.handleUpdateLogin())}
                   >
+                    <LogoutIcon />
                     Logout
                   </MenuItem>
                 ) : (
@@ -221,6 +234,7 @@ const Header = () => {
                       setModalLoginControl((prevState) => !prevState)
                     }
                   >
+                    <LoginIcon />
                     Login
                   </MenuItem>
                 )}
