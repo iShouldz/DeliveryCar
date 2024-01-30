@@ -196,7 +196,7 @@ const Header = () => {
                 }}
                 sx={{ marginTop: "40px", marginRight: "400px" }}
               >
-                <MenuItem onClick={() => {}}>Profile</MenuItem>
+                <MenuItem onClick={() => handleGoTo("profile")}>Profile</MenuItem>
                 <MenuItem onClick={() => handleGoTo("dashboard")}>
                   Dashboard
                 </MenuItem>

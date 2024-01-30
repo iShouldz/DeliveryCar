@@ -34,6 +34,24 @@
       "country": "Brasil",
       "city": "Azazga",
       "id": 35
+    },
+    {
+      "fullName": "Pedro Souza",
+      "emailUser": "pedro@gmail.com",
+      "placaUser": "AAA-965",
+      "selectedCar": "",
+      "country": "Angola",
+      "city": "Camabatela",
+      "id": 36
+    },
+    {
+      "fullName": "Bruno cesar",
+      "emailUser": "pedro@gmail.com",
+      "placaUser": "AAA-999",
+      "selectedCar": "Luxury Car",
+      "country": "Angola",
+      "city": "Lubango",
+      "id": 37
     }
   ],
   "users": [
@@ -56,6 +74,11 @@
       "emailUser": "supa@gmail.com",
       "senha": "senha123",
       "id": 4
+    },
+    {
+      "emailUser": "admin@mydrive.com",
+      "senha": "admin",
+      "id": 5
     }
   ]
 }

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {
   Autocomplete,
   Box,
@@ -13,8 +14,8 @@ import { useForm } from "react-hook-form";
 import FormHelperStyled from "../../components/FormHelperStyled/FormHelperStyled";
 import jsonCountry from "../../utils/countries-and-cities.json";
 import jsonCountryDestiny from "../../utils/countries-and-cities.json";
-import { getDistance } from "geolib";
-
+import carGet from "../../assets/form/CarFormImage.svg";
+import styles from "./styles.module.css";
 const schema = yup
   .object({
     country: yup.string().required(),
@@ -27,8 +28,8 @@ const schema = yup
 const GetTaxi = () => {
   const [coordsOrigin, setCoordsOrigin] = useState(null);
   const [coordsDestination, setCoordsDestination] = useState(null);
-  const [endereco1, setEndereco1] = useState("Feira Nova, Brazil");
-  const [endereco2, setEndereco2] = useState("Abreu e lima, Brazil");
+  const [endereco1, setEndereco1] = useState("");
+  const [endereco2, setEndereco2] = useState("");
   const [KmDistance, setKmDistance] = useState("");
 
   const [country, setCountry] = useState(null);
@@ -54,10 +55,6 @@ const GetTaxi = () => {
     if (coordsOrigin !== null && coordsDestination !== null) {
       console.log("aqui", coordsOrigin);
 
-      //       const distance = geolib.getDistance(
-      //   { latitude: -34.6037, longitude: -58.3816 },
-      //   { latitude: 40.7128, longitude: -74.0060 }
-      // )
       const distance = haversineDistance(
         coordsOrigin.latitude,
         coordsOrigin.longitude,
@@ -66,7 +63,7 @@ const GetTaxi = () => {
       );
 
       const finalDistance = distance.toFixed(2);
-      setKmDistance(`Distância entre os pontos: ${finalDistance} km`);
+      setKmDistance(`${finalDistance}`);
     }
   }, [endereco1, endereco2]);
 
@@ -134,7 +131,16 @@ const GetTaxi = () => {
     return deg * (Math.PI / 180);
   }
 
+  const handleClear = () => {
+    setEndereco1('origin');
+    setEndereco2('destination');
+
+    window.location.reload()
+  }
+
   const handleSubmitDistance = (data) => {
+    setEndereco1('origin');
+    setEndereco2('destination');
     console.log(data);
 
     const origin = data.city.concat(" ", data.country);
@@ -148,9 +154,7 @@ const GetTaxi = () => {
     setEndereco2(destination);
     console.log(endereco1);
     console.log(endereco2);
-    setValue("city", "");
-    setValue("country", "");
-    setCityDestiny();
+    
   };
 
   const {
@@ -164,7 +168,7 @@ const GetTaxi = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   return (
-    <div>
+    <div className={styles.containerGetTaxi}>
       <Typography
         variant="h2"
         sx={{
@@ -737,10 +741,40 @@ const GetTaxi = () => {
         </form>
       </Box>
 
-      {KmDistance !== "" && (
-        <Typography sx={{ display: "flex", justifyContent: "center" }}>
-          {KmDistance}
-        </Typography>
+      {endereco1 !== "" && (
+        <Box
+          sx={{
+            color: "secondary.main",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            backgroundColor: "primary.main",
+            borderRadius: "20px",
+            width: "600px",
+            gap: "20px",
+          }}
+        >
+          <Typography variant="h4">Details about this drive</Typography>
+
+          <Typography variant="h5">Distance: {KmDistance} KM</Typography>
+          <Typography variant="h5">
+            Price: ${(KmDistance * 5).toFixed(2)}
+          </Typography>
+
+          <img src={carGet} />
+          <Button onClick={handleClear}
+            sx={{
+              backgroundColor: "secondary.main",
+              "&:hover": {
+                backgroundColor: "#EA9801",
+              },
+              margin: "20px",
+              color: "white",
+            }}
+          >
+            Reserve this run
+          </Button>
+        </Box>
       )}
     </div>
   );

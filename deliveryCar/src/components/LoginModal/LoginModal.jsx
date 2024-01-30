@@ -71,6 +71,9 @@ const LoginModal = ({ open, onClose }) => {
       console.log(user);
 
       if (user) {
+        dispatch(userActions.handleUserInSystem(user.emailUser))
+        dispatch(userActions.handleIdSystem(user.id))
+
         dispatch(userActions.handleUpdateLogin());
         onClose();
       }

@@ -7,6 +7,7 @@ import ContactUs from "./pages/ContactUs/ContactUs";
 import GetTaxi from "./pages/GetTaxi/GetTaxi";
 import { useSelector } from "react-redux";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import Profile from "./pages/Profile/Profile";
 
 function App() {
   const isAuthenticated = useSelector((state) => state.login.isLogado);
@@ -21,8 +22,11 @@ function App() {
         { path: "/getTaxi", element: <GetTaxi /> },
         {
           path: "/dashboard",
-          // element: <Dashboard />
           element: isAuthenticated === true ? <Dashboard /> : <Home />,
+        },
+        {
+          path: "/profile",
+          element: isAuthenticated === true ? <Profile /> : <Home />,
         },
       ],
     },

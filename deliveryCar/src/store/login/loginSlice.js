@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialUsersState = {
   users: [], isLogado: false, notifications: [{
     typeSeverity: '', message: ''
-  }], newNotification: false, isThemeLight: false
+  }], newNotification: false, isThemeLight: false, currentUser: '', idCurrentUser: 0
 };
 
 const userSlice = createSlice({
@@ -23,6 +23,12 @@ const userSlice = createSlice({
       state.notifications = [{
         typeSeverity: '', message: ''
       }]
+    },
+    handleUserInSystem(state, actions) {
+      state.currentUser = actions.payload
+    },
+    handleIdSystem(state, actions){
+      state.idCurrentUser = actions.payload
     }
   },
 });
