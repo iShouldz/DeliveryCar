@@ -40,16 +40,6 @@ const GetTaxi = () => {
   const [citySelected, setCitySelected] = useState();
 
   useEffect(() => {
-    const obterCoordenadas = async () => {
-      const origin = await obterCoordenadasOSM(endereco1);
-      console.log(origin);
-      setCoordsOrigin(origin);
-
-      const destination = await obterCoordenadasOSM(endereco2);
-      console.log(destination);
-      setCoordsDestination(destination);
-    };
-
     obterCoordenadas();
 
     if (coordsOrigin !== null && coordsDestination !== null) {
@@ -80,6 +70,16 @@ const GetTaxi = () => {
   }, [countryD]);
 
   console.log(KmDistance);
+
+  const obterCoordenadas = async () => {
+    const origin = await obterCoordenadasOSM(endereco1);
+    console.log(origin);
+    setCoordsOrigin(origin);
+
+    const destination = await obterCoordenadasOSM(endereco2);
+    console.log(destination);
+    setCoordsDestination(destination);
+  };
 
   const obterCoordenadasOSM = useCallback(async (endereco) => {
     try {
@@ -135,12 +135,11 @@ const GetTaxi = () => {
     setEndereco1('origin');
     setEndereco2('destination');
 
-    window.location.reload()
+    // window.location.reload()
   }
 
   const handleSubmitDistance = (data) => {
-    setEndereco1('origin');
-    setEndereco2('destination');
+    handleClear()
     console.log(data);
 
     const origin = data.city.concat(" ", data.country);

@@ -39,7 +39,7 @@ const SignUpModal = ({ open, onClose }) => {
 
   const handleLogin = (data) => {
     // dispatch(userActions.handleUpdateLogin());\
-    fetch("http://localhost:3000/users", {
+    fetch("https://json-server-mycar.vercel.app/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
